@@ -1,0 +1,6 @@
+
+#define TWEET_LENGTH 270
+#define USERNAME_LENGTH 100
+#define FOLLOW_MAX 30
+#define TWEET_MAX 100 
+#define USER_MAX 100
