@@ -6,4 +6,4 @@ David's Work.
 
 
 Brian's Work.
-- Try be as cool as david
+- Try to be as cool as david
