@@ -7,16 +7,15 @@
 
 
 typedef struct tweet {
-    char username[USERNAME_LENGTH];
+    size_t userID;  /* index of user in userlist */
     char tweet[TWEET_LENGTH];
-    size_t tweetID;
 } tweet;
 
 typedef struct user {
     char username[USERNAME_LENGTH];
-    char followers[FOLLOW_MAX][USERNAME_LENGTH];
+    int followers[FOLLOW_MAX];  /* collection of userID's */
     size_t follower_count;  /* need to check if < FOLLOW_MAX before adding to followers[] */
-    char following[FOLLOW_MAX][USERNAME_LENGTH];
+    int following[FOLLOW_MAX];
     size_t following_count;
 } user; 
 
@@ -24,11 +23,11 @@ typedef struct user {
 
 typedef struct Node {
     tweet tweet;
-    Node *next;
+    Node *previously_posted_tweet;  /* link to previously most recent tweet */
 } Node;
 
 typedef struct twitter {
-    user users[USER_MAX];
-    user current_user;
-    Node *inital_tweet;  /* first tweet in linked list of Nodes */
+    user userlist[USER_MAX];
+    size_t current_userID;
+    Node *most_recent_tweet;  /* Probably want to change the name of this (start of the linked list) */
 } twitter;

@@ -7,12 +7,12 @@
 #include "objects.h"
 
 user initialise_user(char username[USERNAME_LENGTH]) {
-    user tmp_user = {username, "", 0, "", 0}; /* {username, followers, count, following, count} */
+    user tmp_user = {username, NULL, 0, NULL, 0}; /* {username, followers, count, following, count} */
     return tmp_user;
 }
 
-tweet initialise_tweet(char username[USERNAME_LENGTH]) {  /* twitter.current_user */
-    tweet tmp_tweet = {username, "", 0}; /* {username, tweet, tweetID} */
+tweet initialise_tweet(int userID) {  /* twitter.current_user */
+    tweet tmp_tweet = {userID, ""}; /* {username, tweet} */
     return tmp_tweet;
 }
 
