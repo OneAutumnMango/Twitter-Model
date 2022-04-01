@@ -1,9 +1,8 @@
 #include <stdlib.h>
 
-#define TWEET_LENGTH 270
+#define TWEET_LENGTH 280
 #define USERNAME_LENGTH 100
-#define FOLLOW_MAX 30
-#define TWEET_MAX 100 
+#define FOLLOW_MAX 30 
 #define USER_MAX 100
 
 
@@ -11,7 +10,7 @@ typedef struct tweet {
     char username[USERNAME_LENGTH];
     char tweet[TWEET_LENGTH];
     size_t tweetID;
-    size_t time_stamp;
+    size_t time_stamp;  /* unix time */
 } tweet;
 
 typedef struct user {
@@ -20,4 +19,16 @@ typedef struct user {
     size_t follower_count;
     char following[FOLLOW_MAX][USERNAME_LENGTH];
     size_t following_count;
-} user;
+} user; 
+
+/* linked list of all tweets, go through them until you have 10 with username in following */
+
+typedef struct Node {
+    tweet tweet;
+    Node *next;
+} Node;
+
+typedef struct twitter {
+    user users[USER_MAX];
+    Node *inital_tweet;  /* first tweet in linked list of Nodes */
+} twitter;
