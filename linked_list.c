@@ -1,6 +1,14 @@
 #include "objects.h"
 
-void add_to_list(Node *inital_tweet, tweet new_tweet) {
+
+
+Node* add_to_list(tweet new_tweet, Node *previous_tweet) {  /* returns new start of linked list */
+    Node *new = (Node*)malloc(sizeof(Node));
+    new->tweet = new_tweet;
+    new->previous_node = previous_tweet;
+
+    return new;
+
     /* go through list until pointer = NULL
      * create a Node with new tweet and pointer = NULL
      * let pointer = pointer to new Node (of new tweet)
