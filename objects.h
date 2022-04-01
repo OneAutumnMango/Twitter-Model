@@ -29,5 +29,6 @@ typedef struct Node {
 
 typedef struct twitter {
     user users[USER_MAX];
+    user current_user;
     Node *inital_tweet;  /* first tweet in linked list of Nodes */
 } twitter;
