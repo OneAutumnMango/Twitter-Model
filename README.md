@@ -1,1 +1,7 @@
-This program simulates a Twitter system where you can post tweets, follow other users, get a newsfeed decided by the users you follow. You can also change user, delete your account.
+# davids cool
+brians not
+
+I will skin you alive
+
+
+####BRIAN ADD SHIT TO YOUR .gitignore
