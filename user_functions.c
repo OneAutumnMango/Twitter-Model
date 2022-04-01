@@ -11,6 +11,16 @@ endTwitter(): terminates the program.
 
 /* All functions available to user */
 
-#include "objects.h"
+#include "user_functions.h"
+#include <stdio.h>
+
+
+// Returns the tweet written by the user
+tweet postTweet(size_t current_userID){
+    tweet newTweet = {current_userID,NULL};
+    printf("Write your tweet here. You have 280 characters:\n\n");
+    scanf("%s",newTweet.tweet);
+    printf("\n Tweet Sent!");
+}
 
 
