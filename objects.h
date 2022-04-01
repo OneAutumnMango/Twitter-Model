@@ -10,13 +10,12 @@ typedef struct tweet {
     char username[USERNAME_LENGTH];
     char tweet[TWEET_LENGTH];
     size_t tweetID;
-    size_t time_stamp;  /* unix time */
 } tweet;
 
 typedef struct user {
     char username[USERNAME_LENGTH];
     char followers[FOLLOW_MAX][USERNAME_LENGTH];
-    size_t follower_count;
+    size_t follower_count;  /* need to check if < FOLLOW_MAX before adding to followers[] */
     char following[FOLLOW_MAX][USERNAME_LENGTH];
     size_t following_count;
 } user; 
