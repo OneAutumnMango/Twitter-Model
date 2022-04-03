@@ -13,9 +13,9 @@ typedef struct tweet {
 
 typedef struct user {
     char username[USERNAME_LENGTH];
-    int followers[FOLLOW_MAX];  /* collection of userID's */
+    size_t followers[FOLLOW_MAX];  /* collection of userID's */
     size_t follower_count;  /* need to check if < FOLLOW_MAX before adding to followers[] */
-    int following[FOLLOW_MAX];
+    size_t following[FOLLOW_MAX];
     size_t following_count;
 } user; 
 

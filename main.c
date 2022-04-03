@@ -4,7 +4,6 @@
 #include "functions.h"
 
 int main(void) {
-
     twitter twitter = initialise_twitter();
 
     return 0;
