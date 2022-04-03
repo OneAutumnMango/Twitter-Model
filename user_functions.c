@@ -5,6 +5,8 @@ follow(...): Allows a user to follow a valid user that s/he is not following yet
 unfollow(...): Allows a user to unfollow a valid user that s/he is following.
 delete (...): Allows a user to delete his/her account
 endTurn(): tells the Twitter System to move to the next user
+after endTurn() prompt login/create account same as when you start twitter up
+
 endTwitter(): terminates the program.
 */
 /* All functions available to user */
@@ -12,6 +14,16 @@ endTwitter(): terminates the program.
 #include "user_functions.h"
 #include "functions.h"
 #include <stdio.h>
+
+size_t create_account(twitter twitter, char username[]) { 
+    user user = initialise_user(username);
+
+    twitter.userlist[twitter.user_count] = user;
+    twitter.user_count++;
+
+    return twitter.user_count - 1;  /* returns userID */
+}
+
 
 // Returns the tweet written by the user
 tweet postTweet(size_t current_userID)
@@ -24,15 +36,15 @@ tweet postTweet(size_t current_userID)
 }  /* need to make sure this gets added to linked list */
 
 
-void get_newsfeed(twitter twitter) {
+void getNewsfeed(twitter twitter) {
     size_t count = 0;
     user user = twitter.userlist[twitter.current_userID];
     Node *current_node = twitter.most_recent_tweet;
     while (count < 10 || current_node->previous_node == NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current_node->tweet.userID, user.following, user.following_count)) {
             count++;
-            /* add tweet */
+            /* add/print tweet */
         }
-        current_node = current_node->previous_node;
+        current_node = current_node->previous_node; /* cycle to next node */
     }
 }

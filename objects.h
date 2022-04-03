@@ -28,6 +28,7 @@ typedef struct Node {
 
 typedef struct twitter {
     user userlist[USER_MAX];
+    size_t user_count;  /* when making new user, userID = user_count, then increment count */
     size_t current_userID;
     Node *most_recent_tweet;  /* Probably want to change the name of this (start of the linked list) */
 } twitter;
