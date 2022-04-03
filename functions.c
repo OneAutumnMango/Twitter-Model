@@ -1,23 +1,30 @@
-/* contains hidden functions like 
- * initialise_user()
- * initialise_twitter()
- * initialise_tweet()
- * 
- */
-#include "objects.h"
-#include <stdlib.h>
+#include "functions.h"
+
+
+/* Contains hidden functions no available to the user */
+/* Struct initialisers */
 
 user initialise_user(char username[USERNAME_LENGTH]) {
-    user tmp_user = {username, NULL, 0, NULL, 0}; /* {username, followers, count, following, count} */
-    return tmp_user;
+    user user = {username, NULL, 0, NULL, 0}; /* {username, followers, count, following, count} */
+    return user;
 }
 
 tweet initialise_tweet(size_t userID) {  /* twitter.current_user */
-    tweet tmp_tweet = {userID, ""}; /* {username, tweet} */
-    return tmp_tweet;
+    tweet tweet = {userID, ""}; /* {username, tweet} */
+    return tweet;
 }
 
 twitter initialise_twitter(void) {
-    twitter twitter = {{NULL}, NULL, NULL};
+    twitter twitter = {{NULL}, NULL, NULL};  /* {userlist, curr_userID, mr_tweet} */
     return twitter;
+}
+
+
+
+bool is_in(size_t item, size_t list[], size_t length) {  /* returns true is item is in list[] */
+    for (size_t i = 0; i < length; i++) {  /* might have to declare size of list[] */
+        if (list[i] == item)
+            return true;
+    }
+    return false;
 }
