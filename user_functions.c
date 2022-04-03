@@ -6,11 +6,11 @@ unfollow(...): Allows a user to unfollow a valid user that s/he is following.
 delete (...): Allows a user to delete his/her account
 endTurn(): tells the Twitter System to move to the next user
 endTwitter(): terminates the program.
- */
-
+*/
 /* All functions available to user */
 
 #include "user_functions.h"
+#include "functions.h"
 #include <stdio.h>
 
 // Returns the tweet written by the user
@@ -21,4 +21,17 @@ tweet postTweet(size_t current_userID)
     scanf("%s", newTweet.tweet);
     printf("\n Tweet Sent!");
     return newTweet;
+}  /* need to make sure this gets added to linked list */
+
+
+void get_newsfeed(size_t userID, twitter twitter) {
+    size_t count = 0;
+    user user = twitter.userlist[userID];
+    Node *current_node = twitter.most_recent_tweet;
+    while (count < 10 || current_node->previous_node == NULL) { /* found 10 tweets or reached end of list */
+        if (is_in(userID, user.following, user.following_count)) {
+            count++;
+            /* add tweet */
+        }
+    }
 }
