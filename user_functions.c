@@ -24,14 +24,15 @@ tweet postTweet(size_t current_userID)
 }  /* need to make sure this gets added to linked list */
 
 
-void get_newsfeed(size_t userID, twitter twitter) {
+void get_newsfeed(twitter twitter) {
     size_t count = 0;
-    user user = twitter.userlist[userID];
+    user user = twitter.userlist[twitter.current_userID];
     Node *current_node = twitter.most_recent_tweet;
     while (count < 10 || current_node->previous_node == NULL) { /* found 10 tweets or reached end of list */
-        if (is_in(userID, user.following, user.following_count)) {
+        if (is_in(current_node->tweet.userID, user.following, user.following_count)) {
             count++;
             /* add tweet */
         }
+        current_node = current_node->previous_node;
     }
 }
