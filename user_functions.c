@@ -21,6 +21,7 @@ tweet postTweet(size_t current_userID){
     printf("Write your tweet here. You have 280 characters:\n\n");
     scanf("%s",newTweet.tweet);
     printf("\n Tweet Sent!");
+    return newTweet;
 }
 
 
