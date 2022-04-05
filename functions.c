@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 /* Contains hidden functions not available to the user */
 /* Struct initialisers */
 
@@ -39,8 +38,8 @@ void list_users(twitter twitter) { /* to list users to follow */
     }
 }
 
-int is_unique(twitter twitter, char username[USERNAME_LENGTH]){
-    for (size_t i=0;i<twitter.user_count;i++){
+int is_unique(twitter twitter, char username[USERNAME_LENGTH]) {
+    for (size_t i = 0; i < twitter.user_count; i++) {
         if (strcmp(username, twitter.userlist[i].username) == 0) {
             return 0;
         }
@@ -48,18 +47,16 @@ int is_unique(twitter twitter, char username[USERNAME_LENGTH]){
     return 1;
 }
 
-char* get_username(twitter twitter){
-    char* username = (char*) malloc(USERNAME_LENGTH);;;;
+char *get_username(twitter twitter) {
+    char *username = (char *)malloc(USERNAME_LENGTH);
     do {
         size_t i = 0;
         printf("Please enter a unique username.");
         fgets(username, USERNAME_LENGTH, stdin);
         i++;
 
-    }   while (! is_unique(twitter, username));
+    } while (!is_unique(twitter, username));
     return username;
-
-
 }
 /* need this cause if a user wants to log into an already existing account,
    we have to either search a parallel string array, or check userlist[i].username
