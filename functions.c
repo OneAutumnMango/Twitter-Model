@@ -38,7 +38,7 @@ void list_users(twitter twitter) { /* to list users to follow */
     }
 }
 
-int is_unique(twitter twitter, char username[USERNAME_LENGTH]) {
+int is_unique(twitter twitter, char* username) {
     for (size_t i = 0; i < twitter.user_count; i++) {
         if (strcmp(username, twitter.userlist[i].username) == 0) {
             return 0;

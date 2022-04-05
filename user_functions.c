@@ -27,7 +27,10 @@ size_t create_account(twitter twitter) {
 }
 
 void login(twitter twitter) {
-    char username = (char)get_username();  /* might have to do something better here with the casting */
+    char username[USERNAME_LENGTH];
+    printf("Please enter a unique username.");
+    fgets(username, USERNAME_LENGTH, stdin);
+    
     for (size_t i = 0; i < twitter.user_count; i++) {
         if (strcmp(username, twitter.userlist[i].username) == 0)
             twitter.current_userID = i;
