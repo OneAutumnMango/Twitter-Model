@@ -1,6 +1,6 @@
 #include "functions.h"
 
-/* Contains hidden functions no available to the user */
+/* Contains hidden functions not available to the user */
 /* Struct initialisers */
 
 user initialise_user(char username[USERNAME_LENGTH]) {
