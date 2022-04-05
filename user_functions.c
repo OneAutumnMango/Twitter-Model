@@ -13,12 +13,13 @@ endTwitter(): terminates the program.
 
 #include "user_functions.h"
 #include "functions.h"
+#include "linked_list.h"
 #include <stdio.h>
 #include <string.h>
 
 size_t create_account(twitter twitter) {
     char username[USERNAME_LENGTH];
-    strcpy(username, get_username(twitter)); /* might have to do something better here with the casting */
+    strcpy(username, get_username(twitter));
     user user = initialise_user(username);
 
     twitter.userlist[twitter.user_count] = user;
@@ -40,23 +41,23 @@ void login(twitter twitter) {
 }
 
 // Returns the tweet written by the user
-tweet postTweet(size_t current_userID) {
-    tweet newTweet = {current_userID, NULL};
+void postTweet(twitter twitter) {
+    tweet newTweet = {twitter.current_userID, NULL};
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
     printf("\n Tweet Sent!");
-    return newTweet;
-} /* need to make sure this gets added to linked list */
+    twitter.most_recent_tweet = add_to_list(newTweet,twitter.most_recent_tweet); /* adds newTweet to the linked list */
+}
 
 void getNewsfeed(twitter twitter) {
     size_t count = 0;
     user user = twitter.userlist[twitter.current_userID];
     Node *current_node = twitter.most_recent_tweet;
-    while (count < 10 || current_node->previous_node == NULL) { /* found 10 tweets or reached end of list */
+    while (count < 10 || current_node->next_node == NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current_node->tweet.userID, user.following, user.following_count)) {
             count++;
             /* add/print tweet */
         }
-        current_node = current_node->previous_node; /* cycle to next node */
+        current_node = current_node->next_node; /* cycle to next node */
     }
 }
