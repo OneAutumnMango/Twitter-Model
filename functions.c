@@ -17,7 +17,7 @@ tweet initialise_tweet(size_t userID) { /* twitter.current_user */
 }
 
 twitter initialise_twitter(void) {
-    twitter twitter = {NULL, 0, NULL, NULL}; /* {userlist, user_count, curr_userID, mr_tweet} */
+    twitter twitter = {{NULL}, 0, NULL, NULL}; /* {userlist, user_count, curr_userID, mr_tweet} */
     return twitter;
 }
 
@@ -52,7 +52,7 @@ char *get_username(twitter twitter) {
     char *username = (char *)malloc(USERNAME_LENGTH);
     do {
         size_t i = 0;
-        printf("Please enter a unique username.");
+        printf("Please enter a unique username: ");
         fgets(username, USERNAME_LENGTH, stdin);
         i++;
 
