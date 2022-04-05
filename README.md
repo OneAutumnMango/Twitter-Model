@@ -1,2 +1,2 @@
 # Twitter Engineering Project
-This program simulates a Twitter system where you can post tweets, follow other users, get a newsfeed decided by the users you follow. You can also change user, delete your account.
+This program simulates a Twitter system where you can post tweets, follow other users, get a newsfeed decided by the users you follow. You can also change user, create new accounts or delete your account.

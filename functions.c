@@ -27,8 +27,9 @@ int is_in(size_t item, size_t list[], size_t length) { /* returns true is item i
 }
 
 void list_users(twitter twitter) { /* to list users to follow */
+    user user = twitter.userlist[twitter.current_userID];
     for (size_t i = 0; i < twitter.user_count; i++) {
-        if (i == twitter.current_userID || is_in(i, twitter.userlist[twitter.current_userID].following, twitter.userlist[twitter.current_userID].following_count)) {
+        if (i == twitter.current_userID || is_in(i, user.following, user.following_count)) {
             continue; /* no need to list yourself to follow or if you are following them */
         }
         printf("%s", twitter.userlist[i].username);
