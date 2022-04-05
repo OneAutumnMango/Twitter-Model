@@ -1,3 +1,4 @@
 Twitter.code-workspace
 .idea
 cmake-build-debug
+.clang-format
