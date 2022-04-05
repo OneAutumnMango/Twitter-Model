@@ -1,5 +1,4 @@
 #include "functions.h"
-#include <string.h>
 
 /* Contains hidden functions not available to the user */
 /* Struct initialisers */
@@ -43,12 +42,3 @@ void list_users(twitter twitter) { /* to list users to follow */
 // int is_in_str(char item[], char list[][], size_t length);
 
 /* go through userlist[i].username stop once found, or if at end*/
-void login(char username[], twitter twitter) {
-    /* go through usernames until found or = user_count */
-    for (size_t i=0;i<twitter.user_count;i++){
-        if (strcmp(username, twitter.userlist[i].username) == 0) 
-            twitter.current_userID = i;
-            return;
-    }
-    printf("Error: Username specified not found.");
-}

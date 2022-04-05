@@ -14,6 +14,7 @@ endTwitter(): terminates the program.
 #include "user_functions.h"
 #include "functions.h"
 #include <stdio.h>
+#include <string.h>
 
 size_t create_account(twitter twitter, char username[]) { 
     user user = initialise_user(username);
@@ -22,6 +23,16 @@ size_t create_account(twitter twitter, char username[]) {
     twitter.user_count++;
 
     return twitter.user_count - 1;  /* returns userID */
+}
+
+void login(char username[], twitter twitter) {
+    /* go through usernames until found or = user_count */
+    for (size_t i=0;i<twitter.user_count;i++){
+        if (strcmp(username, twitter.userlist[i].username) == 0) 
+            twitter.current_userID = i;
+            return;
+    }
+    printf("Error: Username specified not found.");
 }
 
 
