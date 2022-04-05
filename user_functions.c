@@ -30,7 +30,7 @@ tweet postTweet(size_t current_userID)
 {
     tweet newTweet = {current_userID, NULL};
     printf("Write your tweet here. You have 280 characters:\n\n");
-    scanf("%s", newTweet.tweet);
+    fgets("%s", newTweet.tweet);
     printf("\n Tweet Sent!");
     return newTweet;
 }  /* need to make sure this gets added to linked list */
