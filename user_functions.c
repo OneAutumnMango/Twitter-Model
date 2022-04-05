@@ -16,7 +16,9 @@ endTwitter(): terminates the program.
 #include <stdio.h>
 #include <string.h>
 
-size_t create_account(twitter twitter, char username[]) { 
+size_t create_account(twitter twitter) {
+
+
     user user = initialise_user(username);
 
     twitter.userlist[twitter.user_count] = user;
@@ -25,12 +27,17 @@ size_t create_account(twitter twitter, char username[]) {
     return twitter.user_count - 1;  /* returns userID */
 }
 
-void login(char username[], twitter twitter) {
+void login(twitter twitter) {
+    char username[USERNAME_LENGTH];
+    printf("Please enter your username.");
+    fgets(username, USERNAME_LENGTH, stdin);
+
     /* go through usernames until found or = user_count */
     for (size_t i=0;i<twitter.user_count;i++){
-        if (strcmp(username, twitter.userlist[i].username) == 0) 
+        if (strcmp(username, twitter.userlist[i].username) == 0) {
             twitter.current_userID = i;
             return;
+        }
     }
     printf("Error: Username specified not found.");
 }
@@ -59,3 +66,4 @@ void getNewsfeed(twitter twitter) {
         current_node = current_node->previous_node; /* cycle to next node */
     }
 }
+

@@ -6,8 +6,8 @@ set(CMAKE_C_STANDARD 11)
 include_directories(.)
 
 add_executable(Twitter
-        main.c
         functions.c
         linked_list.c
+        main.c
         objects.h
         user_functions.c)
