@@ -20,7 +20,7 @@ endTwitter(): terminates the program.
 size_t create_account(twitter twitter) {
     char username[USERNAME_LENGTH];
     strcpy(username, get_username(twitter));
-    //user user = initialise_user(username);
+    user user = initialise_user(username);
 
     twitter.userlist[twitter.user_count] = user;
     twitter.user_count++;
