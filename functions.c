@@ -6,7 +6,8 @@
 /* Struct initialisers */
 
 user initialise_user(char username[USERNAME_LENGTH]) {
-    user user = {username, NULL, 0, NULL, 0}; /* {username, followers, count, following, count} */
+    user user;
+    strcpy(user.username, username);
     return user;
 }
 
