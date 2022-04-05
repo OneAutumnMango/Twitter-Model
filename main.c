@@ -5,6 +5,8 @@
 
 int main(void) {
     twitter twitter = initialise_twitter();
+    twitter.current_userID = create_account(twitter);
+    
 
     return 0;
 }
