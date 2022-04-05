@@ -5,6 +5,8 @@
 #define FOLLOW_MAX 30 
 #define USER_MAX 100
 
+#ifndef OBJECTS
+#define OBJECTS
 
 typedef struct tweet {
     size_t userID;  /* index of user in userlist */
@@ -33,3 +35,5 @@ typedef struct twitter {
     Node *most_recent_tweet;  /* Probably want to change the name 
     of this (start of the linked list) */
 } twitter;
+
+#endif
