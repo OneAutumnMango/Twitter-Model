@@ -1,2 +1,2 @@
 #include "objects.h"
-Node* add_to_list(tweet, Node*);
+Node* push(tweet, Node*);

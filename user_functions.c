@@ -46,7 +46,7 @@ void postTweet(twitter *twitter) {
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
     printf("\n Tweet Sent!");
-    twitter->most_recent_tweet = add_to_list(newTweet, twitter->most_recent_tweet); /* adds newTweet to the linked list */
+    twitter->most_recent_tweet = push(newTweet, twitter->most_recent_tweet); /* adds newTweet to the linked list */
 }
 
 void getNewsfeed(twitter *twitter) {
