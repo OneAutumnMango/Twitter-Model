@@ -4,9 +4,16 @@
 #include "functions.h"
 
 int main(void) {
+
     twitter twitter = initialise_twitter();
-    twitter.current_userID = create_account(twitter);
-    
+    printf("%u %u\n", twitter.current_userID, twitter.user_count);
+    twitter.current_userID = create_account(&twitter);
+    printf("%u %u\n", twitter.current_userID, twitter.user_count);
+    twitter.current_userID = create_account(&twitter);
+    printf("%u %u\n", twitter.current_userID, twitter.user_count);
+    login(&twitter);
+    printf("%u %u\n", twitter.current_userID, twitter.user_count);
+
 
     return 0;
 }
