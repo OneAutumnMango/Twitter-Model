@@ -45,7 +45,7 @@ void postTweet(twitter *twitter) {
     tweet newTweet = {twitter->current_userID, ""};
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
-    printf("\n Tweet Sent!");
+    printf("\n Tweet Sent!\n\n");
     twitter->most_recent_tweet = push(newTweet, twitter->most_recent_tweet); /* adds newTweet to the linked list */
 }
 
@@ -56,7 +56,8 @@ void getNewsfeed(twitter *twitter) {
     while (count < 10 || current_node->next_node == NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current_node->tweet.userID, user.following, user.following_count)) {
             count++;
-            /* add/print tweet */
+            /* add username + time sent + formatting + L + ratio */
+            printf("\n%s\n", current_node->tweet.tweet);
         }
         current_node = current_node->next_node; /* cycle to next node */
     }
