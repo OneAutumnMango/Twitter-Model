@@ -29,26 +29,25 @@ int is_in(size_t item, size_t list[], size_t length) { /* returns true is item i
     return 0;
 }
 
-void list_users(twitter twitter) { /* to list users to follow */
-    user user = twitter.userlist[twitter.current_userID];
-    for (size_t i = 0; i < twitter.user_count; i++) {
-        if (i == twitter.current_userID || is_in(i, user.following, user.following_count)) {
-            continue; /* no need to list yourself to follow or if you are following them */
-        }
-        printf("%s", twitter.userlist[i].username);
+void list_users(twitter *twitter) { /* to list users to follow */
+    user user = twitter->userlist[twitter->current_userID];
+    for (size_t i = 0; i < twitter->user_count; i++) {
+        if (i == twitter->current_userID || is_in(i, user.following, user.following_count))
+            continue; /* no need to list yourself or people you are already following */
+        printf("%s", twitter->userlist[i].username);
     }
 }
 
-int is_unique(twitter twitter, char* username) { /* Checks if the username given already exists */
-    for (size_t i = 0; i < twitter.user_count; i++) {
-        if (strcmp(username, twitter.userlist[i].username) == 0) {
+int is_unique(twitter *twitter, char* username) { /* Checks if the username given already exists */
+    for (size_t i = 0; i < twitter->user_count; i++) {
+        if (strcmp(username, twitter->userlist[i].username) == 0) {
             return 0;
         }
     }
     return 1;
 }
 
-char *get_username(twitter twitter) {
+char *get_username(twitter *twitter) {
     char *username = (char *)malloc(USERNAME_LENGTH);
     do {
         size_t i = 0;
@@ -59,9 +58,3 @@ char *get_username(twitter twitter) {
     } while (!is_unique(twitter, username));
     return username;
 }
-/* need this cause if a user wants to log into an already existing account,
-   we have to either search a parallel string array, or check userlist[i].username
-   (which should work with the same funciton) */
-// int is_in_str(char item[], char list[][], size_t length);
-
-/* go through userlist[i].username stop once found, or if at end*/

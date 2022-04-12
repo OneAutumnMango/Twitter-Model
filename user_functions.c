@@ -17,42 +17,42 @@ endTwitter(): terminates the program.
 #include <stdio.h>
 #include <string.h>
 
-size_t create_account(twitter twitter) {
+size_t create_account(twitter *twitter) {
     char username[USERNAME_LENGTH];
     strcpy(username, get_username(twitter));
     user user = initialise_user(username);
 
-    twitter.userlist[twitter.user_count] = user;
-    twitter.user_count++;
+    twitter->userlist[twitter->user_count] = user;
+    twitter->user_count++;
 
-    return twitter.user_count - 1; /* returns userID */
+    return twitter->user_count - 1;  /* returns userID */
 }
 
-void login(twitter twitter) {
+void login(twitter *twitter) {
     char username[USERNAME_LENGTH];
     printf("Please enter a unique username.");
     fgets(username, USERNAME_LENGTH, stdin);
     
-    for (size_t i = 0; i < twitter.user_count; i++) {
-        if (strcmp(username, twitter.userlist[i].username) == 0)
-            twitter.current_userID = i;
+    for (size_t i = 0; i < twitter->user_count; i++) {
+        if (strcmp(username, twitter->userlist[i].username) == 0)
+            twitter->current_userID = i;
     }
     printf("Error: Username specified not found.");
 }
 
 // Returns the tweet written by the user
-void postTweet(twitter twitter) {
-    tweet newTweet = {twitter.current_userID, ""};
+void postTweet(twitter *twitter) {
+    tweet newTweet = {twitter->current_userID, ""};
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
     printf("\n Tweet Sent!");
-    twitter.most_recent_tweet = add_to_list(newTweet,twitter.most_recent_tweet); /* adds newTweet to the linked list */
+    twitter->most_recent_tweet = add_to_list(newTweet, twitter->most_recent_tweet); /* adds newTweet to the linked list */
 }
 
-void getNewsfeed(twitter twitter) {
+void getNewsfeed(twitter *twitter) {
     size_t count = 0;
-    user user = twitter.userlist[twitter.current_userID];
-    Node *current_node = twitter.most_recent_tweet;
+    user user = twitter->userlist[twitter->current_userID];
+    Node *current_node = twitter->most_recent_tweet;
     while (count < 10 || current_node->next_node == NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current_node->tweet.userID, user.following, user.following_count)) {
             count++;

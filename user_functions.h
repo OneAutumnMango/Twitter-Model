@@ -3,9 +3,9 @@
  * This function gets a new username, creates a twitter account with that
  * username. It returns the userID of the new twitter account.
  */
-size_t create_account(twitter twitter);
+size_t create_account(twitter *twitter);
 
-void login(twitter twitter);
-void postTweet(twitter twitter);
+void login(twitter *twitter);
+void postTweet(twitter *twitter);
 
 
