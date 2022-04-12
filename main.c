@@ -16,7 +16,15 @@ int main(void) {
 
     postTweet(&twitter);
     postTweet(&twitter);
+    twitter.current_userID = create_account(&twitter);
+
+    printf("%u %u\n", twitter.current_userID, twitter.user_count);
     getNewsfeed(&twitter);
+    printf("%u %u\n", twitter.current_userID, twitter.user_count);
+    twitter.current_userID = 1;
+    postTweet(&twitter);
+    getNewsfeed(&twitter);
+
 
     return 0;
 }
