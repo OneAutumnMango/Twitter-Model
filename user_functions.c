@@ -30,16 +30,17 @@ size_t create_account(twitter *twitter) {
 
 void login(twitter *twitter) {
     char username[USERNAME_LENGTH];
-    printf("Please enter a unique username.");
+    printf("Please enter your username:");
     fgets(username, USERNAME_LENGTH, stdin);
     
     for (size_t i = 0; i < twitter->user_count; i++) {
-        if (strcmp(username, twitter->userlist[i].username) == 0)
+        if (strcmp(username, twitter->userlist[i].username) == 0) {
             twitter->current_userID = i;
-            printf("User successfully logged-in.");
+            printf("User successfully logged-in.\n");
             return;
+        }
     }
-    printf("Error: Username specified not found.");
+    printf("Error: Username specified not found.\n");
 }
 
 // Returns the tweet written by the user
