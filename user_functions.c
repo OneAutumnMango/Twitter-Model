@@ -42,7 +42,7 @@ void login(twitter *twitter) {
 
 // Returns the tweet written by the user
 void postTweet(twitter *twitter) {
-    tweet newTweet = {twitter->current_userID, ""};
+    tweet newTweet = initialise_tweet(twitter->current_userID);
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
     printf("\n Tweet Sent!\n\n");

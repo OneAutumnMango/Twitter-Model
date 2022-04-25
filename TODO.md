@@ -1,12 +1,10 @@
-David's Work.
-- Data structures
-- figure this out so its actually good like
+To Do List
 
+- follow()
+- unfollow()
+- delete()
+- endTurn()
+- endTwitter()
 
-
-Brian's Work.
-- Try to be as cool as david
-
-- initalise struct Twitter
-- initalise user, ask username
-- give options for functions (function pointers?)
+- fix getNewsFeed()
+- login()
