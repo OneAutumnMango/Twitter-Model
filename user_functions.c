@@ -36,6 +36,8 @@ void login(twitter *twitter) {
     for (size_t i = 0; i < twitter->user_count; i++) {
         if (strcmp(username, twitter->userlist[i].username) == 0)
             twitter->current_userID = i;
+            printf("User successfully logged-in.");
+            return;
     }
     printf("Error: Username specified not found.");
 }
