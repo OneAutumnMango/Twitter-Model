@@ -45,8 +45,8 @@ void login(twitter *twitter) {
 
 // Returns the tweet written by the user
 void postTweet(twitter *twitter) {
-    tweet newTweet = initialise_tweet(twitter->current_userID);
-    strcpy(newTweet.tweetAuthor, twitter->userlist->username);
+    tweet newTweet = initialise_tweet(twitter->current_user->user.userID);
+    strcpy(newTweet.tweetAuthor, twitter->userlist->user.username);
 
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
@@ -73,16 +73,16 @@ void getNewsfeed(twitter *twitter) {
 
 void follow(twitter *twitter) {
     char *wantToFollow;
-    twitter->userlist->following_count++;
+    twitter->userlist->user.following_count++;
     while (1) {
         puts("These are the users available to follow:");
         list_users(&twitter);
         puts("Which user would you like to follow? :");
         fgets(wantToFollow, USERNAME_LENGTH, stdin); /* UPDATE TO LINKED LIST*/
-        for (size_t i = 0; i < USER_MAX; i++) {
-            if (strcmp(wantToFollow, twitter->userlist[i].username) == 0) {
-                twitter->userlist[i].follower_count++;
-                twitter->userlist[i].followers[twitter->current_userID] = 1;
+        while (twitter->userlist != NULL) {
+            if (strcmp(wantToFollow, twitter->userlist->user.username) == 0) {
+                twitter->userlist->user.follower_count++;
+                twitter->userlist->user.followers[twitter->userlist->user.userID] = twitter->userlist->user.userID;
                 return;
             }
         }
