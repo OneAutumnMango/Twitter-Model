@@ -20,7 +20,7 @@ endTwitter(): terminates the program.
 void create_account(twitter *twitter) {
     char username[USERNAME_LENGTH];
     strcpy(username, get_username(twitter));
-    user *user = initialise_user(username);
+    user *user = initialise_user(username, twitter);
 
     push_user(user, twitter);                 /* Add user to linked list */
     twitter->current_user = twitter->userlist; /* set created user as current user */
