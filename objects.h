@@ -38,6 +38,7 @@ typedef struct UserNode {
 
 typedef struct twitter {
     UserNode* userlist;  /* start of userlist */
+    size_t user_count;
     UserNode* current_user;  /* pointer to current usernode */
     TweetNode *most_recent_tweet;  /* Probably want to change the name
     of this (start of the linked list) */
