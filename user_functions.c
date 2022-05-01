@@ -73,17 +73,20 @@ void getNewsfeed(twitter *twitter) {
 
 void follow(twitter *twitter) {
     char* wantToFollow;
-    puts("These are the users available to follow:");
-    list_users(&twitter);
-    puts("Which user would you like to follow? :");
-    fgets(wantToFollow, USERNAME_LENGTH, stdin);  /* UPDATE TO LINKED LIST*/
     twitter->userlist->following_count++;
-    for (size_t i=0;i<USER_MAX;i++) {
-        if (strcmp(wantToFollow,twitter->userlist[i].username) == 0) {
-            twitter->userlist[i].follower_count++;
-            twitter->userlist[i].followers[twitter->current_userID] = 1;
-            return;
+    while (1) {
+        puts("These are the users available to follow:");
+        list_users(&twitter);
+        puts("Which user would you like to follow? :");
+        fgets(wantToFollow, USERNAME_LENGTH, stdin);  /* UPDATE TO LINKED LIST*/
+        for (size_t i = 0; i < USER_MAX; i++) {
+            if (strcmp(wantToFollow, twitter->userlist[i].username) == 0) {
+                twitter->userlist[i].follower_count++;
+                twitter->userlist[i].followers[twitter->current_userID] = 1;
+                return;
+            }
         }
+        puts("That username was not found");
     }
 
 }
