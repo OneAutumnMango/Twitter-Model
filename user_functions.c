@@ -56,7 +56,7 @@ void postTweet(twitter *twitter) {
 
 void getNewsfeed(twitter *twitter) {
     size_t count = 0;
-    user user = twitter->current_user->user;
+    user* user = twitter->current_user->user;
     TweetNode *current_node = twitter->most_recent_tweet;
     printf("**************\nYour News Feed\n**************\n");
     while (count < 10 || current_node->next_node != NULL) { /* found 10 tweets or reached end of list */
