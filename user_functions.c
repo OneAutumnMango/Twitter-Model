@@ -63,10 +63,27 @@ void getNewsfeed(twitter *twitter) {
         if (is_in(current_node->tweet.userID, user.following, user.following_count)) {
             count++;
             /* add time sent + formatting + L + ratio */
-            printf("\n\t%s - TIME HERE?"/*\t\t%s*/, current_node->tweet.tweetAuthor);
+            printf("\n\t%s - TIME HERE?", current_node->tweet.tweetAuthor);
             printf("\n%s\n", current_node->tweet.tweet);
         }
         current_node = current_node->next_node; /* cycle to next node */
     }
     printf("****************\nEnd of News Feed\n****************\n");
+}
+
+void follow(twitter *twitter) {
+    char* wantToFollow;
+    puts("These are the users available to follow:");
+    list_users(&twitter);
+    puts("Which user would you like to follow? :");
+    fgets(wantToFollow, USERNAME_LENGTH, stdin);  /* UPDATE TO LINKED LIST*/
+    twitter->userlist->following_count++;
+    for (size_t i=0;i<USER_MAX;i++) {
+        if (strcmp(wantToFollow,twitter->userlist[i].username) == 0) {
+            twitter->userlist[i].follower_count++;
+            twitter->userlist[i].followers[twitter->current_userID] = 1;
+            return;
+        }
+    }
+
 }
