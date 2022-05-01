@@ -17,28 +17,28 @@ endTwitter(): terminates the program.
 #include <stdio.h>
 #include <string.h>
 
-size_t create_account(twitter *twitter) {
+void create_account(twitter *twitter) {
     char username[USERNAME_LENGTH];
     strcpy(username, get_username(twitter));
     user user = initialise_user(username);
 
-    twitter->userlist[twitter->user_count] = user;
-    twitter->user_count++;
-
-    return twitter->user_count - 1;  /* returns userID */
+    push_user(&user, twitter);                 /* Add user to linked list */
+    twitter->current_user = twitter->userlist; /* set created user as current user */
 }
 
 void login(twitter *twitter) {
     char username[USERNAME_LENGTH];
     printf("Please enter your username:");
     fgets(username, USERNAME_LENGTH, stdin);
-    
-    for (size_t i = 0; i < twitter->user_count; i++) {
-        if (strcmp(username, twitter->userlist[i].username) == 0) {
-            twitter->current_userID = i;
+
+    UserNode *current = twitter->current_user;
+    while (current->next != NULL) {
+        if (strcmp(username, current->user.username) == 0) { /* if username matches current */
+            twitter->current_user = current;                 /* set user as current user */
             printf("User successfully logged-in.\n");
             return;
         }
+        current = current->next; /* cycle to next */
     }
     printf("Error: Username specified not found.\n");
 }
@@ -46,7 +46,7 @@ void login(twitter *twitter) {
 // Returns the tweet written by the user
 void postTweet(twitter *twitter) {
     tweet newTweet = initialise_tweet(twitter->current_userID);
-    strcpy(newTweet.tweetAuthor,twitter->userlist->username);
+    strcpy(newTweet.tweetAuthor, twitter->userlist->username);
 
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
@@ -72,13 +72,13 @@ void getNewsfeed(twitter *twitter) {
 }
 
 void follow(twitter *twitter) {
-    char* wantToFollow;
+    char *wantToFollow;
     twitter->userlist->following_count++;
     while (1) {
         puts("These are the users available to follow:");
         list_users(&twitter);
         puts("Which user would you like to follow? :");
-        fgets(wantToFollow, USERNAME_LENGTH, stdin);  /* UPDATE TO LINKED LIST*/
+        fgets(wantToFollow, USERNAME_LENGTH, stdin); /* UPDATE TO LINKED LIST*/
         for (size_t i = 0; i < USER_MAX; i++) {
             if (strcmp(wantToFollow, twitter->userlist[i].username) == 0) {
                 twitter->userlist[i].follower_count++;
@@ -88,5 +88,4 @@ void follow(twitter *twitter) {
         }
         puts("That username was not found");
     }
-
 }
