@@ -5,9 +5,12 @@
 /* Contains hidden functions not available to the user */
 /* Struct initialisers */
 
-user initialise_user(char username[USERNAME_LENGTH]) {
-    user user;
-    strcpy(user.username, username);
+user* initialise_user(char username[USERNAME_LENGTH], twitter* twitter) {
+    user *user = malloc(sizeof(user));
+    strcpy(user->username, username);
+    user->userID = twitter->user_count; /* give user new userid, and increments usercount */
+    twitter->user_count++;
+    
     return user;
 }
 
@@ -17,7 +20,7 @@ tweet initialise_tweet(size_t userID) { /* twitter.current_user */
 }
 
 twitter initialise_twitter(void) {
-    twitter twitter = {{NULL}, 0, NULL, NULL}; /* {userlist, user_count, curr_userID, mr_tweet} */
+    twitter twitter = {NULL, 0, NULL, NULL}; /* {userlist, user_count, curr_userID, mr_tweet} */
     return twitter;
 }
 
