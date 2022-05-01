@@ -2,8 +2,7 @@
 
 #define TWEET_LENGTH 280
 #define USERNAME_LENGTH 100
-#define FOLLOW_MAX 30 
-#define USER_MAX 100
+#define FOLLOW_MAX 30
 
 #ifndef OBJECTS
 #define OBJECTS

@@ -18,7 +18,7 @@ endTwitter(): terminates the program.
 #include <string.h>
 
 void create_account(twitter *twitter) {
-    char username[USERNAME_LENGTH];
+    char* username = malloc(sizeof(char)*USERNAME_LENGTH);
     strcpy(username, get_username(twitter));
     user *user = initialise_user(username, twitter);
 
@@ -83,7 +83,7 @@ void follow(twitter *twitter) {
             if (strcmp(wantToFollow, twitter->userlist->user.username) == 0) {
                 twitter->userlist->user.follower_count++;
                 twitter->userlist->user.followers[twitter->userlist->user.userID] = twitter->userlist->user.userID;
-                free(*wantToFollow);
+                free(wantToFollow);
                 return;
             }
         }

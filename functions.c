@@ -5,7 +5,7 @@
 /* Contains hidden functions not available to the user */
 /* Struct initialisers */
 
-user* initialise_user(char username[USERNAME_LENGTH], twitter* twitter) {
+user* initialise_user(char* username, twitter* twitter) {
     user *user = malloc(sizeof(user));
     strcpy(user->username, username);
     user->userID = twitter->user_count; /* give user new userid, and increments usercount */
