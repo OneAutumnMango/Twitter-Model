@@ -51,13 +51,13 @@ void postTweet(twitter *twitter) {
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
     printf("\n Tweet Sent!\n\n");
-    twitter->most_recent_tweet = push(newTweet, twitter->most_recent_tweet); /* adds newTweet to the linked list */
+    twitter->most_recent_tweet = push_tweet(newTweet, twitter->most_recent_tweet); /* adds newTweet to the linked list */
 }
 
 void getNewsfeed(twitter *twitter) {
     size_t count = 0;
     user user = twitter->userlist[twitter->current_userID];
-    Node *current_node = twitter->most_recent_tweet;
+    TweetNode *current_node = twitter->most_recent_tweet;
     printf("**************\nYour News Feed\n**************\n");
     while (count < 10 || current_node->next_node != NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current_node->tweet.userID, user.following, user.following_count)) {

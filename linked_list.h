@@ -1,2 +1,2 @@
 #include "objects.h"
-Node* push(tweet, Node*);
+TweetNode* push_tweet(tweet new_tweet, TweetNode *previous_node);

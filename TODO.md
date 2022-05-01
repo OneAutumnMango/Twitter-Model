@@ -8,3 +8,8 @@ To Do List
 
 - fix getNewsFeed()
 - login()
+
+- userlist stuff
+ - LOGIN
+ - create user
+ - get news feed

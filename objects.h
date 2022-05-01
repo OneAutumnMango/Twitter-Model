@@ -20,20 +20,25 @@ typedef struct user {
     size_t follower_count;  /* need to check if < FOLLOW_MAX before adding to followers[] */
     size_t following[FOLLOW_MAX];
     size_t following_count;
-} user; 
+} user;
 
-/* linked list of all tweets, go through them until you have 10 with username in following */
 
-typedef struct Node {
+typedef struct TweetNode {
     tweet tweet;
-    struct Node *next_node;  /* link to previously most recent tweet */
-} Node;
+    struct TweetNode *next_node;  /* link to previously most recent tweet */
+} TweetNode;
+
+typedef struct UserNode {
+    user user;
+    struct UserNode *next;
+    struct UserNode *previous;
+} UserNode;
+
 
 typedef struct twitter {
-    user userlist[USER_MAX];
-    size_t user_count;  /* when making new user, userID = user_count, then increment count */
-    size_t current_userID;
-    Node *most_recent_tweet;  /* Probably want to change the name 
+    UserNode* userlist;  /* start of userlist */
+    UserNode* current_user;  /* pointer to current usernode */
+    TweetNode *most_recent_tweet;  /* Probably want to change the name
     of this (start of the linked list) */
 } twitter;
 
