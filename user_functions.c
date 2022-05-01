@@ -46,6 +46,8 @@ void login(twitter *twitter) {
 // Returns the tweet written by the user
 void postTweet(twitter *twitter) {
     tweet newTweet = initialise_tweet(twitter->current_userID);
+    strcpy(newTweet.tweetAuthor,twitter->userlist->username);
+
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
     printf("\n Tweet Sent!\n\n");
@@ -56,12 +58,15 @@ void getNewsfeed(twitter *twitter) {
     size_t count = 0;
     user user = twitter->userlist[twitter->current_userID];
     Node *current_node = twitter->most_recent_tweet;
+    printf("**************\nYour News Feed\n**************\n");
     while (count < 10 || current_node->next_node != NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current_node->tweet.userID, user.following, user.following_count)) {
             count++;
-            /* add username + time sent + formatting + L + ratio */
+            /* add time sent + formatting + L + ratio */
+            printf("\n\t%s - TIME HERE?"/*\t\t%s*/, current_node->tweet.tweetAuthor);
             printf("\n%s\n", current_node->tweet.tweet);
         }
         current_node = current_node->next_node; /* cycle to next node */
     }
+    printf("****************\nEnd of News Feed\n****************\n");
 }

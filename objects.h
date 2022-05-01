@@ -10,6 +10,7 @@
 
 typedef struct tweet {
     size_t userID;  /* index of user in userlist */
+    char tweetAuthor[USERNAME_LENGTH];
     char tweet[TWEET_LENGTH];
 } tweet;
 

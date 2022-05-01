@@ -12,7 +12,7 @@ user initialise_user(char username[USERNAME_LENGTH]) {
 }
 
 tweet initialise_tweet(size_t userID) { /* twitter.current_user */
-    tweet tweet = {userID, ""};         /* {username, tweet} */
+    tweet tweet = {userID, "", ""};         /* {userID, username, tweet} */
     return tweet;
 }
 
