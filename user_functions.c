@@ -33,7 +33,7 @@ void login(twitter *twitter) {
 
     UserNode *current = twitter->current_user;
     while (current->next != NULL) {
-        if (strcmp(username, current->user.username) == 0) { /* if username matches current */
+        if (strcmp(username, current->user->username) == 0) { /* if username matches current */
             twitter->current_user = current;                 /* set user as current user */
             printf("User successfully logged-in.\n");
             return;
@@ -45,8 +45,8 @@ void login(twitter *twitter) {
 
 // Returns the tweet written by the user
 void postTweet(twitter *twitter) {
-    tweet newTweet = initialise_tweet(twitter->current_user->user.userID);
-    strcpy(newTweet.tweetAuthor, twitter->userlist->user.username);
+    tweet newTweet = initialise_tweet(twitter->current_user->user->userID);
+    strcpy(newTweet.tweetAuthor, twitter->userlist->user->username);
 
     printf("Write your tweet here. You have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
@@ -60,7 +60,7 @@ void getNewsfeed(twitter *twitter) {
     TweetNode *current_node = twitter->most_recent_tweet;
     printf("**************\nYour News Feed\n**************\n");
     while (count < 10 || current_node->next_node != NULL) { /* found 10 tweets or reached end of list */
-        if (is_in(current_node->tweet.userID, user.following, user.following_count)) {
+        if (is_in(current_node->tweet.userID, user->following, user->following_count)) {
             count++;
             /* add time sent + formatting + L + ratio */
             printf("\n\t%s - TIME HERE?", current_node->tweet.tweetAuthor);
@@ -73,16 +73,16 @@ void getNewsfeed(twitter *twitter) {
 
 void follow(twitter *twitter) {
     char *wantToFollow = malloc(sizeof(char)*USERNAME_LENGTH);
-    twitter->userlist->user.following_count++;
+    twitter->userlist->user->following_count++;
     while (1) {
         puts("These are the users available to follow:");
-        list_users(&twitter);
+        list_users(twitter);
         puts("Which user would you like to follow? :");
         fgets(wantToFollow, USERNAME_LENGTH, stdin); /* UPDATE TO LINKED LIST*/
         while (twitter->userlist != NULL) {
-            if (strcmp(wantToFollow, twitter->userlist->user.username) == 0) {
-                twitter->userlist->user.follower_count++;
-                twitter->userlist->user.followers[twitter->userlist->user.userID] = twitter->userlist->user.userID;
+            if (strcmp(wantToFollow, twitter->userlist->user->username) == 0) {
+                twitter->userlist->user->followers[twitter->userlist->user->follower_count] = twitter->userlist->user->userID;
+                twitter->userlist->user->follower_count++;
                 free(wantToFollow);
                 return;
             }

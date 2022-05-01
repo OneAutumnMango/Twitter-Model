@@ -11,7 +11,7 @@ void remove_users_tweets(twitter *twitter) {     /* removes all the current user
     TweetNode* previous = twitter->most_recent_tweet;
     TweetNode* current = twitter->most_recent_tweet;
     while(current->next_node != NULL) { /* go through all the tweets */
-        if (current->tweet.userID == twitter->current_user->user.userID) { /* if the author is the current user */
+        if (current->tweet.userID == twitter->current_user->user->userID) { /* if the author is the current user */
             previous->next_node = current;      /* remove the tweet from the list */
 
             if(current == twitter->most_recent_tweet) {     /* if the tweet is the newest tweet */
@@ -31,7 +31,7 @@ void remove_users_tweets(twitter *twitter) {     /* removes all the current user
 
 void push_user(user *user, twitter *twitter) {
     UserNode *new = malloc(sizeof(UserNode));
-    new->user = *user;
+    new->user = user;
     new->next = twitter->userlist;
     twitter->userlist->previous = new;  /* points old start of userlist to most new */
     twitter->userlist = new;

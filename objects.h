@@ -29,7 +29,7 @@ typedef struct TweetNode {
 } TweetNode;
 
 typedef struct UserNode {
-    user user;
+    user* user;
     struct UserNode *next;
     struct UserNode *previous;
 } UserNode;
