@@ -1,31 +1,30 @@
 #include "linked_list.h"
 
-TweetNode* push_tweet(tweet new_tweet, TweetNode *previous_node) {  /* returns new start of linked list */
+TweetNode *push_tweet(tweet new_tweet, TweetNode *previous_node) { /* returns new start of linked list */
     TweetNode *new_node = malloc(sizeof(TweetNode));
     new_node->tweet = new_tweet;
     new_node->next_node = previous_node;
-    return new_node;  
+    return new_node;
 }
 
-void remove_users_tweets(twitter *twitter) {     /* removes all the current users tweets from linked list */
-    TweetNode* previous = twitter->most_recent_tweet;
-    TweetNode* current = twitter->most_recent_tweet;
-    while(current->next_node != NULL) { /* go through all the tweets */
+void remove_users_tweets(twitter *twitter) { /* removes all the current users tweets from linked list */
+    TweetNode *previous = twitter->most_recent_tweet;
+    TweetNode *current = twitter->most_recent_tweet;
+    while (current->next_node != NULL) {                                    /* go through all the tweets */
         if (current->tweet.userID == twitter->current_user->user->userID) { /* if the author is the current user */
-            previous->next_node = current;      /* remove the tweet from the list */
+            previous->next_node = current;                                  /* remove the tweet from the list */
 
-            if(current == twitter->most_recent_tweet) {     /* if the tweet is the newest tweet */
-                twitter->most_recent_tweet = current->next_node;    /* remove the tweet from the front */
+            if (current == twitter->most_recent_tweet) {         /* if the tweet is the newest tweet */
+                twitter->most_recent_tweet = current->next_node; /* remove the tweet from the front */
             }
             free(previous);
         }
         else {
-            previous = current;     /* move onto the next node */
+            previous = current; /* move onto the next node */
         }
-        current = current->next_node;   /* move onto the next node */
+        current = current->next_node; /* move onto the next node */
     }
 }
-
 
 /* user linked list */
 
@@ -40,7 +39,7 @@ void push_user(user *user, twitter *twitter) {
 }
 
 void delete_current_user(twitter *twitter) {
-    UserNode* current = twitter->current_user;
-    current->previous->next = current;  /* points previous node's 'next' to current */
+    UserNode *current = twitter->current_user;
+    current->previous->next = current; /* points previous node's 'next' to current */
     free(current);
 }

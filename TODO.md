@@ -16,4 +16,6 @@ To Do List
  - create user
  - get news feed
 
+ - REWRITE remove_users_tweets, can use UserNode->previous
+
 
