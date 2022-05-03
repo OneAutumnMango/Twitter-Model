@@ -79,10 +79,10 @@ void follow(twitter *twitter) {
         list_users(twitter);
         puts("Which user would you like to follow? :");
         fgets(wantToFollow, USERNAME_LENGTH, stdin); /* UPDATE TO LINKED LIST*/
-        while (twitter->userlist != NULL) {
-            if (strcmp(wantToFollow, twitter->userlist->user->username) == 0) {
-                twitter->userlist->user->followers[twitter->userlist->user->follower_count] = twitter->userlist->user->userID;
-                twitter->userlist->user->follower_count++;
+        while (current != NULL) {
+            if (strcmp(wantToFollow, current->user->username) == 0) {
+                current->user->followers[current->user->follower_count] = current->user->userID;
+                current->user->follower_count++;
                 twitter->current_user->user->following_count++;
                 free(wantToFollow);
                 return;

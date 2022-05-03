@@ -61,7 +61,7 @@ int is_unique(twitter *twitter, char *username) { /* Checks if the username give
 char *get_username(twitter *twitter) {
     char *username = malloc(sizeof(char) * USERNAME_LENGTH);
     do {
-        printf("Please enter a unique username: ");
+        printf("Please enter a unique username:\t");
         fgets(username, USERNAME_LENGTH, stdin);
         int len = strlen(username);
         if (username[len - 1] == '\n')
