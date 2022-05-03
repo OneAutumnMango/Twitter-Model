@@ -8,9 +8,9 @@ int main(void) {
     twitter twitter = initialise_twitter();
     create_account(&twitter);
     create_account(&twitter);
-    printf("%u %u\n", twitter.current_user->user->userID, twitter.user_count);
+    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
     create_account(&twitter);
-    printf("%u %u\n", twitter.current_user->user->userID, twitter.user_count);
+    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
 //    login(&twitter);
 //    printf("%u %u\n", twitter.current_userID, twitter.user_count);
 //    list_users(&twitter);
@@ -27,11 +27,11 @@ int main(void) {
     postTweet(&twitter);
     postTweet(&twitter);
     getNewsfeed(&twitter);
-    printf("%u %u\n", twitter.current_user->user->userID, twitter.user_count);
+    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
 
-    printf("%u %u\n", twitter.current_user->user->userID, twitter.user_count);
+    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
 //    getNewsfeed(&twitter);
-    printf("%u %u\n", twitter.current_user->user->userID, twitter.user_count);
+    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
     twitter.current_user->user->userID = 1;
     postTweet(&twitter);
     getNewsfeed(&twitter);

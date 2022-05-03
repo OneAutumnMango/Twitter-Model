@@ -1,9 +1,8 @@
-cmake_minimum_required(VERSION 3.21)
-project(Twitter C)
+cmake_minimum_required(VERSION 3.0.0)
+project(Twitter VERSION 0.1.0)
 
-set(CMAKE_C_STANDARD 11)
-
-include_directories(.)
+include(CTest)
+enable_testing()
 
 add_executable(Twitter
         functions.c
@@ -11,3 +10,7 @@ add_executable(Twitter
         main.c
         objects.h
         user_functions.c)
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
