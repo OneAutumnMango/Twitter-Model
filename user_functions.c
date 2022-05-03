@@ -19,7 +19,7 @@ endTwitter(): terminates the program.
 
 void create_account(twitter *twitter) {
     char* username = malloc(sizeof(char)*USERNAME_LENGTH);
-    strcpy(username, get_username(twitter));
+    strcpy(username, get_unique_username(twitter));
     user *user = initialise_user(username, twitter);
 
     push_user(user, twitter);                 /* Add user to linked list */
@@ -72,13 +72,13 @@ void getNewsfeed(twitter *twitter) {
 }
 
 void follow(twitter *twitter) {
-    char *wantToFollow = malloc(sizeof(char)*USERNAME_LENGTH);
+    char* wantToFollow = malloc(sizeof(char)*USERNAME_LENGTH);
     while (1) {
         UserNode* current = twitter->userlist;
         puts("These are the users available to follow:");
         list_users(twitter);
         puts("Which user would you like to follow? :");
-        fgets(wantToFollow, USERNAME_LENGTH, stdin); /* UPDATE TO LINKED LIST*/
+        strcpy(wantToFollow, get_existing_username(twitter));
         while (current != NULL) {
             if (strcmp(wantToFollow, current->user->username) == 0) {
                 current->user->followers[current->user->follower_count] = current->user->userID;
