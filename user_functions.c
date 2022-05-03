@@ -73,7 +73,6 @@ void getNewsfeed(twitter *twitter) {
 
 void follow(twitter *twitter) {
     char *wantToFollow = malloc(sizeof(char)*USERNAME_LENGTH);
-    twitter->userlist->user->following_count++;
     while (1) {
         puts("These are the users available to follow:");
         list_users(twitter);
@@ -83,10 +82,12 @@ void follow(twitter *twitter) {
             if (strcmp(wantToFollow, twitter->userlist->user->username) == 0) {
                 twitter->userlist->user->followers[twitter->userlist->user->follower_count] = twitter->userlist->user->userID;
                 twitter->userlist->user->follower_count++;
+                twitter->current_user->user->following_count++;
                 free(wantToFollow);
                 return;
             }
         }
         puts("That username was not found");
+
     }
 }
