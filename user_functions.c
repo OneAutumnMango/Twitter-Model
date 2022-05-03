@@ -86,8 +86,8 @@ void follow(twitter *twitter) {
                 free(wantToFollow);
                 return;
             }
+            twitter->userlist = twitter->userlist->next;
         }
         puts("That username was not found");
-
     }
 }
