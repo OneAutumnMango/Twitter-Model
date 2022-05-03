@@ -11,7 +11,7 @@ To Do List
     - bug with printing less than 11 tweets
 - login()
 
-- userlist stuff
+ - userlist stuff
  - LOGIN
  - create user
  - get news feed
