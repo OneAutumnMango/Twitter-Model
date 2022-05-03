@@ -6,6 +6,7 @@
 int main(void) {
 
     twitter twitter = initialise_twitter();
+    initialise_user("poopy", &twitter);
     create_account(&twitter);
     create_account(&twitter);
     printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);

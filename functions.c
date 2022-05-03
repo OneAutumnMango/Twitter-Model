@@ -49,10 +49,12 @@ void list_users(twitter *twitter) { /* to list users to follow */
 }
 
 int is_unique(twitter *twitter, char *username) { /* Checks if the username given already exists */
-    for (size_t i = 0; i < twitter->user_count; i++) {
-        if (strcmp(username, twitter->userlist->user->username) == 0) {
+    UserNode *current = twitter->userlist;
+    while (current != NULL) {
+        if (strcmp(username, current->user->username) == 0) {
             return 0;
         }
+        current = current->next;
     }
     return 1;
 }
@@ -73,7 +75,7 @@ char *get_unique_username(twitter *twitter) {
 char *get_existing_username(twitter *twitter) {
     char *username = malloc(sizeof(char) * USERNAME_LENGTH);
     do {
-        printf("Please enter a username from above:");
+        printf("\nPlease enter a username from above: ");
         fgets(username, USERNAME_LENGTH, stdin);
         int len = strlen(username);
         if (username[len - 1] == '\n')
