@@ -34,8 +34,8 @@ int is_in(size_t item, size_t list[], size_t length) { /* returns true is item i
 
 void list_users(twitter *twitter) { /* to list users to follow */
     user* user = twitter->current_user->user;
-    UserNode* current = twitter->current_user;
-    int i = 0;
+    UserNode* current = twitter->userlist;
+    size_t i = 0;
     while (current->next != NULL) {
         if (current == twitter->current_user || is_in(i, user->following, user->following_count))
             continue; /* no need to list yourself or people you are already following */
