@@ -43,7 +43,7 @@ void list_users(twitter *twitter) { /* to list users to follow */
             current = current->next;
             continue; /* no need to list yourself or people you are already following */
         }
-        printf("%s", twitter->userlist->user->username);
+        printf("%s\n ", twitter->userlist->user->username);
         i++;
         current = current->next;
     }
