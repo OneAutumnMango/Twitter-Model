@@ -8,6 +8,8 @@
 user *initialise_user(char *username, twitter *twitter) {
     user *user = malloc(sizeof(user));
     strcpy(user->username, username);
+    user->following_count = 0;
+    user->follower_count = 0;
     user->userID = twitter->user_count; /* give user new userid, and increments usercount */
     twitter->user_count++;
 

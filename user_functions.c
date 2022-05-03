@@ -74,6 +74,7 @@ void getNewsfeed(twitter *twitter) {
 void follow(twitter *twitter) {
     char *wantToFollow = malloc(sizeof(char)*USERNAME_LENGTH);
     while (1) {
+        UserNode* current = twitter->userlist;
         puts("These are the users available to follow:");
         list_users(twitter);
         puts("Which user would you like to follow? :");
@@ -86,8 +87,8 @@ void follow(twitter *twitter) {
                 free(wantToFollow);
                 return;
             }
+            current = current->next;
         }
         puts("That username was not found");
-
     }
 }
