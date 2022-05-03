@@ -58,15 +58,28 @@ int is_unique(twitter *twitter, char *username) { /* Checks if the username give
     return 1;
 }
 
-char *get_username(twitter *twitter) {
+char *get_unique_username(twitter *twitter) {
     char *username = malloc(sizeof(char) * USERNAME_LENGTH);
     do {
-        printf("Please enter a unique username:\t");
+        printf("Please enter a unique username:");
         fgets(username, USERNAME_LENGTH, stdin);
         int len = strlen(username);
         if (username[len - 1] == '\n')
             username[len - 1] = '\0';
 
     } while (!is_unique(twitter, username));
+    return username;
+}
+
+char *get_existing_username(twitter *twitter) {
+    char *username = malloc(sizeof(char) * USERNAME_LENGTH);
+    do {
+        printf("Please enter a username from above:");
+        fgets(username, USERNAME_LENGTH, stdin);
+        int len = strlen(username);
+        if (username[len - 1] == '\n')
+            username[len - 1] = '\0';
+
+    } while (is_unique(twitter, username));
     return username;
 }
