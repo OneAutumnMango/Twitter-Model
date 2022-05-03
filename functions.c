@@ -12,7 +12,6 @@ user *initialise_user(char *username, twitter *twitter) {
     user->follower_count = 0;
     user->userID = twitter->user_count; /* give user new userid, and increments usercount */
     twitter->user_count++;
-
     return user;
 }
 
@@ -38,12 +37,12 @@ void list_users(twitter *twitter) { /* to list users to follow */
     user *user = twitter->current_user->user;
     UserNode *current = twitter->userlist;
     size_t i = 0;
-    while (current->next != NULL) {
+    while (current != NULL) {
         if (current == twitter->current_user || is_in(i, user->following, user->following_count)) {
             current = current->next;
             continue; /* no need to list yourself or people you are already following */
         }
-        printf("%s\n ", twitter->userlist->user->username);
+        printf("%s\n", current->user->username);
         i++;
         current = current->next;
     }
