@@ -21,7 +21,7 @@ void create_account(twitter *twitter) {
     char *username = malloc(sizeof(char) * USERNAME_LENGTH);
     strcpy(username, get_unique_username(twitter));
 
-    user *user = initialise_user(username,twitter);
+    user *user = initialise_user(username, twitter);
     // user *user = malloc(sizeof(user));
     // user = initialise_user(username,twitter);
 
@@ -64,7 +64,7 @@ void getNewsfeed(twitter *twitter) {
     printf("**************\nYour News Feed\n**************\n");
     while (count < 10 && current != NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current->tweet.userID, user->following, user->following_count) || current->tweet.userID == user->userID) {
-            count++;                                        /* add time sent + formatting + L + ratio */
+            count++; /* add time sent + formatting + L + ratio */
             printf("\n\t%s - TIME HERE?", current->tweet.tweetAuthor);
             printf("\n%s\n", current->tweet.tweet);
         }
@@ -93,4 +93,8 @@ void follow(twitter *twitter) {
         }
         puts("That username was not found");
     }
+}
+
+void exit_twitter(void) { 
+    exit(0);
 }
