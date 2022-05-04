@@ -22,11 +22,10 @@ void create_account(twitter *twitter) {
     strcpy(username, get_unique_username(twitter));
 
     user *user = initialise_user(username, twitter);
-    // user *user = malloc(sizeof(user));
-    // user = initialise_user(username,twitter);
-
     push_user(user, twitter);                  /* Add user to linked list */
     twitter->current_user = twitter->userlist; /* set created user as current user */
+
+    puts("Your account has been created!");
 
     printf("\nPress Enter to Continue\n");
     while(getchar() != '\n');
@@ -34,7 +33,7 @@ void create_account(twitter *twitter) {
 
 void login(twitter *twitter) {
     char username[USERNAME_LENGTH];
-    printf("---- Please enter your username ----");
+    printf("---- Please enter your username ----\n");
     fgets(username, USERNAME_LENGTH, stdin);
 
     UserNode *current = twitter->current_user;
@@ -50,6 +49,9 @@ void login(twitter *twitter) {
         current = current->next; /* cycle to next */
     }
     printf("Error: Username specified not found.\n");
+
+    printf("\nPress Enter to Continue\n");
+    while(getchar() != '\n');
 }
 
 // Returns the tweet written by the user
@@ -98,6 +100,10 @@ void follow(twitter *twitter) {
                 current->user->follower_count++;
                 twitter->current_user->user->following_count++;
                 free(wantToFollow);
+                puts("User has been followed");
+
+                printf("\nPress Enter to Continue\n");
+                while(getchar() != '\n');
                 return;
             }
             current = current->next;

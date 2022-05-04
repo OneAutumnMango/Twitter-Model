@@ -8,7 +8,7 @@ int main(void) {
 
     twitter twitter = initialise_twitter();
 
-    puts("Welcome to Twitter!\n");
+    puts("---- Welcome to Twitter! ----\n\n");
 
     create_account(&twitter);
     
@@ -59,7 +59,7 @@ int main(void) {
                 exit_twitter();
                 break;
             default:
-                printf("Sorry, %d was not a valid command.\n\nSelect from one of the options above.\n", choice);
+                printf("Sorry, %d was not a valid command.\n\n", choice);
         }
     }
     return 0;
