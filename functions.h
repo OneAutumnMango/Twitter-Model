@@ -1,6 +1,6 @@
 #include "objects.h"
 
-user* initialise_user(char username[USERNAME_LENGTH], twitter* twitter);
+void initialise_user(char username[USERNAME_LENGTH], user* user, twitter* twitter);
 tweet initialise_tweet(size_t userID);
 twitter initialise_twitter(void);
 char *get_unique_username(twitter *twitter);
