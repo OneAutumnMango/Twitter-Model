@@ -18,12 +18,14 @@ endTwitter(): terminates the program.
 #include <string.h>
 
 void create_account(twitter *twitter) {
-    char* username = malloc(sizeof(char)*USERNAME_LENGTH);
+    char *username = malloc(sizeof(char) * USERNAME_LENGTH);
     strcpy(username, get_unique_username(twitter));
-    user *user = malloc(sizeof(user));
-    initialise_user(username, user, twitter);
 
-    push_user(user, twitter);                 /* Add user to linked list */
+    user *user = initialise_user(username,twitter);
+    // user *user = malloc(sizeof(user));
+    // user = initialise_user(username,twitter);
+
+    push_user(user, twitter);                  /* Add user to linked list */
     twitter->current_user = twitter->userlist; /* set created user as current user */
 }
 
@@ -35,7 +37,7 @@ void login(twitter *twitter) {
     UserNode *current = twitter->current_user;
     while (current->next != NULL) {
         if (strcmp(username, current->user->username) == 0) { /* if username matches current */
-            twitter->current_user = current;                 /* set user as current user */
+            twitter->current_user = current;                  /* set user as current user */
             printf("User successfully logged-in.\n");
             return;
         }
@@ -57,25 +59,24 @@ void postTweet(twitter *twitter) {
 
 void getNewsfeed(twitter *twitter) {
     size_t count = 0;
-    user* user = twitter->current_user->user;
-    TweetNode *current_node = twitter->most_recent_tweet;
+    user *user = twitter->current_user->user;
+    TweetNode *current = twitter->most_recent_tweet;
     printf("**************\nYour News Feed\n**************\n");
-    while (count < 10 || current_node->next_node != NULL) { /* found 10 tweets or reached end of list */
-        if (is_in(current_node->tweet.userID, user->following, user->following_count)) {
-            count++;
-            /* add time sent + formatting + L + ratio */
-            printf("\n\t%s - TIME HERE?", current_node->tweet.tweetAuthor);
-            printf("\n%s\n", current_node->tweet.tweet);
+    while (count < 10 || current != NULL) { /* found 10 tweets or reached end of list */
+        if (is_in(current->tweet.userID, user->following, user->following_count)) {
+            count++;                                        /* add time sent + formatting + L + ratio */
+            printf("\n\t%s - TIME HERE?", current->tweet.tweetAuthor);
+            printf("\n%s\n", current->tweet.tweet);
         }
-        current_node = current_node->next_node; /* cycle to next node */
+        current = current->next_node; /* cycle to next node */
     }
     printf("****************\nEnd of News Feed\n****************\n");
 }
 
 void follow(twitter *twitter) {
-    char* wantToFollow = malloc(sizeof(char)*USERNAME_LENGTH);
+    char *wantToFollow = malloc(sizeof(char) * USERNAME_LENGTH);
     while (1) {
-        UserNode* current = twitter->userlist;
+        UserNode *current = twitter->userlist;
         puts("These are the users available to follow:");
         list_users(twitter);
         puts("Which user would you like to follow?:");

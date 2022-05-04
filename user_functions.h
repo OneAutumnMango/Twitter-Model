@@ -1,7 +1,6 @@
 #include "objects.h"
 /*
- * This function gets a new username, creates a twitter account with that
- * username. It returns the userID of the new twitter account.
+ * creates user, adds it to the user list and logs-in as them
  */
 void create_account(twitter *twitter);
 

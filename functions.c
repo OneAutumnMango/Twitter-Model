@@ -5,14 +5,18 @@
 /* Contains hidden functions not available to the user */
 /* Struct initialisers */
 
-void initialise_user(char *username, user* user,twitter *twitter) {
+// void initialise_user(char *username, user* user,twitter *twitter) {
+user *initialise_user(char *username, twitter *twitter) {
+    user *user = malloc(sizeof(struct user));
     strcpy(user->username, username);
+    
     user->following_count = 0;
     user->follower_count = 0;
     user->userID = twitter->user_count; /* give user new userid, and increments usercount */
     twitter->user_count++;
+    return user;
 }
-
+    
 tweet initialise_tweet(size_t userID) { /* twitter.current_user */
     tweet tweet = {userID, "", ""};     /* {userID, username, tweet} */
     return tweet;
