@@ -62,8 +62,8 @@ void getNewsfeed(twitter *twitter) {
     user *user = twitter->current_user->user;
     TweetNode *current = twitter->most_recent_tweet;
     printf("**************\nYour News Feed\n**************\n");
-    while (count < 10 || current != NULL) { /* found 10 tweets or reached end of list */
-        if (is_in(current->tweet.userID, user->following, user->following_count)) {
+    while (count < 10 && current != NULL) { /* found 10 tweets or reached end of list */
+        if (is_in(current->tweet.userID, user->following, user->following_count) || current->tweet.userID == user->userID) {
             count++;                                        /* add time sent + formatting + L + ratio */
             printf("\n\t%s - TIME HERE?", current->tweet.tweetAuthor);
             printf("\n%s\n", current->tweet.tweet);

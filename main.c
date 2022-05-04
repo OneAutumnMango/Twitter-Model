@@ -16,16 +16,7 @@ int main(void) {
 //    list_users(&twitter);
     follow(&twitter);
     postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
-    postTweet(&twitter);
+
     getNewsfeed(&twitter);
     printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
 
