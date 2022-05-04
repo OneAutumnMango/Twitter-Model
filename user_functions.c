@@ -71,6 +71,8 @@ void getNewsfeed(twitter *twitter) {
         current = current->next_node; /* cycle to next node */
     }
     printf("****************\nEnd of News Feed\n****************\n");
+    printf("\nPress Enter to Continue\n");
+    while(getchar() != '\n');
 }
 
 void follow(twitter *twitter) {
@@ -79,7 +81,6 @@ void follow(twitter *twitter) {
         UserNode *current = twitter->userlist;
         puts("These are the users available to follow:");
         list_users(twitter);
-        puts("Which user would you like to follow?:");
         strcpy(wantToFollow, get_existing_username(twitter));
         while (current != NULL) {
             if (strcmp(wantToFollow, current->user->username) == 0) {

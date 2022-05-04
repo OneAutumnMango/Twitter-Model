@@ -32,7 +32,7 @@ void push_user(user *user, twitter *twitter) {
     UserNode *new = malloc(sizeof(UserNode));
     new->user = user;
     new->next = twitter->userlist;
-    if (!(twitter->userlist == NULL)) {    /* if it is not the start of the list */
+    if (twitter->userlist != NULL) {    /* if it is not the start of the list */
         twitter->userlist->previous = malloc(sizeof(UserNode));
         twitter->userlist->previous = new; /* points old start of userlist to most new */
     }

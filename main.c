@@ -2,30 +2,85 @@
 #include "objects.h"
 #include "user_functions.h"
 #include "functions.h"
+#include "linked_list.h"
 
 int main(void) {
 
     twitter twitter = initialise_twitter();
+
+    puts("Welcome to Twitter");
+
     create_account(&twitter);
-    create_account(&twitter);
-    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
-    create_account(&twitter);
-    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
+    
+    char* buffer = malloc(sizeof(char));
+    int choice = 1;
+    while (choice != 9) {
+        puts("\nWhat do you want to do?\n"
+             "1 - Create a new account\n"
+             "2 - Log into an existing account\n"
+             "3 - Post a Tweet\n"
+             "4 - Get your News Feed\n"
+             "5 - Follow a user\n"
+             "6 - Unfollow a user\n"
+             "7 - Delete this account\n"
+             "8 - Exit Twitter\n"
+             "\n"
+             "Please select from one of the options above\n");
+
+
+        scanf("%c",buffer);
+        fflush(stdin);
+        choice = atol(buffer);
+
+        switch (choice) {
+            case 1:
+                create_account(&twitter);
+                break;
+            case 2:
+                login(&twitter);
+                break;
+            case 3:
+                postTweet(&twitter);
+                break;
+            case 4:
+                getNewsfeed(&twitter);
+                break;
+            case 5:
+                follow(&twitter);
+                break;
+            case 6:
+//                unfollow(&twitter);
+                break;
+            case 7:
+                delete_current_user(&twitter);
+                break;
+            case 8:
+                exit_twitter();
+                break;
+            default:
+                printf("Sorry, %d was not a valid command.\nSelect from one of the options above.\n", choice);
+        }
+    }
+//    create_account(&twitter);
+//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
+//    create_account(&twitter);
+//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
 //    login(&twitter);
 //    printf("%u %u\n", twitter.current_userID, twitter.user_count);
 //    list_users(&twitter);
-    follow(&twitter);
-    postTweet(&twitter);
-
-    getNewsfeed(&twitter);
-    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
-
-    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
+//    follow(&twitter);
+//    postTweet(&twitter);
+//    postTweet(&twitter);
+//
 //    getNewsfeed(&twitter);
-    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
-    twitter.current_user->user->userID = 1;
-    postTweet(&twitter);
-    getNewsfeed(&twitter);
+//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
+//
+//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
+//    getNewsfeed(&twitter);
+//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
+//    twitter.current_user->user->userID = 1;
+//    postTweet(&twitter);
+//    getNewsfeed(&twitter);
 
 
     return 0;
