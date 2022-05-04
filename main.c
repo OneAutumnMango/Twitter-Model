@@ -8,14 +8,15 @@ int main(void) {
 
     twitter twitter = initialise_twitter();
 
-    puts("Welcome to Twitter");
+    puts("Welcome to Twitter!\n");
 
     create_account(&twitter);
     
     char* buffer = malloc(sizeof(char));
     int choice = 1;
+
     while (choice != 9) {
-        puts("\nWhat do you want to do?\n"
+        puts("\nWhat do you want to do?\n\n"
              "1 - Create a new account\n"
              "2 - Log into an existing account\n"
              "3 - Post a Tweet\n"
@@ -25,7 +26,7 @@ int main(void) {
              "7 - Delete this account\n"
              "8 - Exit Twitter\n"
              "\n"
-             "Please select from one of the options above\n");
+             "Please select the number corresponding to one of the options above\n");
 
 
         scanf("%c",buffer);
@@ -58,30 +59,8 @@ int main(void) {
                 exit_twitter();
                 break;
             default:
-                printf("Sorry, %d was not a valid command.\nSelect from one of the options above.\n", choice);
+                printf("Sorry, %d was not a valid command.\n\nSelect from one of the options above.\n", choice);
         }
     }
-//    create_account(&twitter);
-//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
-//    create_account(&twitter);
-//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
-//    login(&twitter);
-//    printf("%u %u\n", twitter.current_userID, twitter.user_count);
-//    list_users(&twitter);
-//    follow(&twitter);
-//    postTweet(&twitter);
-//    postTweet(&twitter);
-//
-//    getNewsfeed(&twitter);
-//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
-//
-//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
-//    getNewsfeed(&twitter);
-//    printf("%lu %lu\n", twitter.current_user->user->userID, twitter.user_count);
-//    twitter.current_user->user->userID = 1;
-//    postTweet(&twitter);
-//    getNewsfeed(&twitter);
-
-
     return 0;
 }

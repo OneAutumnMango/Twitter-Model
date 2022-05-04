@@ -27,18 +27,24 @@ void create_account(twitter *twitter) {
 
     push_user(user, twitter);                  /* Add user to linked list */
     twitter->current_user = twitter->userlist; /* set created user as current user */
+
+    printf("\nPress Enter to Continue\n");
+    while(getchar() != '\n');
 }
 
 void login(twitter *twitter) {
     char username[USERNAME_LENGTH];
-    printf("Please enter your username:");
+    printf("---- Please enter your username ----");
     fgets(username, USERNAME_LENGTH, stdin);
 
     UserNode *current = twitter->current_user;
     while (current->next != NULL) {
         if (strcmp(username, current->user->username) == 0) { /* if username matches current */
             twitter->current_user = current;                  /* set user as current user */
-            printf("User successfully logged-in.\n");
+            printf("---- User successfully logged-in. ----\n");
+
+            printf("\nPress Enter to Continue\n");
+            while(getchar() != '\n');
             return;
         }
         current = current->next; /* cycle to next */
@@ -51,17 +57,20 @@ void postTweet(twitter *twitter) {
     tweet newTweet = initialise_tweet(twitter->current_user->user->userID);
     strcpy(newTweet.tweetAuthor, twitter->userlist->user->username);
 
-    printf("Write your tweet here. You have 280 characters:\n\n");
+    printf("---- Write your tweet here ----\n\nYou have 280 characters:\n\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
-    printf("\n Tweet Sent!\n\n");
+    printf("\n---- Tweet Sent! ----\n");
     twitter->most_recent_tweet = push_tweet(newTweet, twitter->most_recent_tweet); /* adds newTweet to the linked list */
+
+    printf("\nPress Enter to Continue\n");
+    while(getchar() != '\n');
 }
 
 void getNewsfeed(twitter *twitter) {
     size_t count = 0;
     user *user = twitter->current_user->user;
     TweetNode *current = twitter->most_recent_tweet;
-    printf("**************\nYour News Feed\n**************\n");
+    printf("---- Your News Feed ----\n");
     while (count < 10 && current != NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current->tweet.userID, user->following, user->following_count) || current->tweet.userID == user->userID) {
             count++; /* add time sent + formatting + L + ratio */
@@ -70,7 +79,8 @@ void getNewsfeed(twitter *twitter) {
         }
         current = current->next_node; /* cycle to next node */
     }
-    printf("****************\nEnd of News Feed\n****************\n");
+    printf("---- End of News Feed ----\n");
+
     printf("\nPress Enter to Continue\n");
     while(getchar() != '\n');
 }
@@ -97,6 +107,7 @@ void follow(twitter *twitter) {
 }
 
 void exit_twitter(void) { 
-    printf("Exiting twitter you cunt");
+    printf("Exiting twitter!\n"
+           "Thanks for using this program!");
     exit(0);
 }
