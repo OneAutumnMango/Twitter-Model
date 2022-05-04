@@ -9,4 +9,6 @@ void postTweet(twitter *twitter);
 void getNewsfeed(twitter *twitter);
 void follow(twitter *twitter);
 
+void exit_twitter(void);
+
 

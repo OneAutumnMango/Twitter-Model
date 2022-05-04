@@ -96,5 +96,6 @@ void follow(twitter *twitter) {
 }
 
 void exit_twitter(void) { 
+    printf("Exiting twitter you cunt");
     exit(0);
 }
