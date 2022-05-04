@@ -40,7 +40,7 @@ void login(twitter *twitter) {
     while (current->next != NULL) {
         if (strcmp(username, current->user->username) == 0) { /* if username matches current */
             twitter->current_user = current;                  /* set user as current user */
-            printf("---- User successfully logged-in. ----\n");
+            printf("---- User successfully logged-in ----\n");
 
             printf("\nPress Enter to Continue\n");
             while(getchar() != '\n');
@@ -59,11 +59,10 @@ void postTweet(twitter *twitter) {
     tweet newTweet = initialise_tweet(twitter->current_user->user->userID);
     strcpy(newTweet.tweetAuthor, twitter->userlist->user->username);
 
-    printf("---- Write your tweet here ----\n\nYou have 280 characters:\n\n");
+    printf("---- Write your tweet here ----\n\nYou have 280 characters:\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
     printf("\n---- Tweet Sent! ----\n");
     twitter->most_recent_tweet = push_tweet(newTweet, twitter->most_recent_tweet); /* adds newTweet to the linked list */
-
     printf("\nPress Enter to Continue\n");
     while(getchar() != '\n');
 }
@@ -82,7 +81,6 @@ void getNewsfeed(twitter *twitter) {
         current = current->next_node; /* cycle to next node */
     }
     printf("---- End of News Feed ----\n");
-
     printf("\nPress Enter to Continue\n");
     while(getchar() != '\n');
 }
@@ -113,7 +111,6 @@ void follow(twitter *twitter) {
 }
 
 void exit_twitter(void) { 
-    printf("Exiting twitter!\n"
-           "Thanks for using this program!");
+    printf("Exiting twitter!\nThanks for using our program!");
     exit(0);
 }

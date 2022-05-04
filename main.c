@@ -14,7 +14,6 @@ int main(void) {
     
     char* buffer = malloc(sizeof(char));
     int choice = 1;
-
     while (choice != 9) {
         puts("\nWhat do you want to do?\n\n"
              "1 - Create a new account\n"
@@ -26,8 +25,8 @@ int main(void) {
              "7 - Delete this account\n"
              "8 - Exit Twitter\n"
              "\n"
-             "Please select the number corresponding to one of the options above\n");
-
+             "Please select a number corresponding to one of the options above\n"
+             );
 
         scanf("%c",buffer);
         fflush(stdin);
