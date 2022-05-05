@@ -103,7 +103,8 @@ void follow(twitter *twitter) {
         strcpy(wantToFollow, get_existing_username(twitter));
         while (current != NULL) {
             if (strcmp(wantToFollow, current->user->username) == 0) {
-                current->user->followers[current->user->follower_count] = current->user->userID;
+                current->user->followers[current->user->follower_count] = twitter->current_user->user->userID;
+                twitter->current_user->user->following[twitter->current_user->user->following_count] = current->user->userID;
                 current->user->follower_count++;
                 twitter->current_user->user->following_count++;
 
