@@ -157,7 +157,7 @@ void unfollow(twitter *twitter) {
 
 void print_user_info(twitter* twitter) {
     user *user = twitter->current_user->user;
-    printf("---- User %lu's Account Info. ----\n - Username: %s\n - Follower Count: %lu\n - Following Count: %lu\n----------------------------------", user->userID, user->username, user->follower_count, user->following_count);
+    printf("---- User %lu's Account Info. ----\n - Username: %s\n - Follower Count: %lu\n - Following Count: %lu\n--------------------------------\n", user->userID, user->username, user->follower_count, user->following_count);
 }           
 
 void exit_twitter(void) {
