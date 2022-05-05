@@ -74,7 +74,7 @@ void getNewsfeed(twitter *twitter) {
     while (count < 10 && current != NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current->tweet.userID, user->following, user->following_count) || current->tweet.userID == user->userID) {
             count++; /* add time sent + formatting + L + ratio */
-            printf("\n\t%s", current->tweet.tweetAuthor);
+            printf("\n - %s", current->tweet.tweetAuthor);
             printf("\n%s\n", current->tweet.tweet);
         }
         current = current->next_node; /* cycle to next node */
@@ -96,8 +96,9 @@ void follow(twitter *twitter) {
                 current->user->followers[current->user->follower_count] = current->user->userID;
                 current->user->follower_count++;
                 twitter->current_user->user->following_count++;
+
+                printf("%s has been followed\n",wantToFollow);
                 free(wantToFollow);
-                puts("User has been followed");
 
                 printf("\nPress Enter to Continue\n");
                 while(getchar() != '\n');
