@@ -41,8 +41,6 @@ void login(twitter *twitter) {
             twitter->current_user = current;                  /* set user as current user */
             puts("---- User successfully logged-in ----\n");
 
-            puts("\nPress Enter to Continue\n");
-            while (getchar() != '\n');
             return;
         }
         current = current->next; /* cycle to next */
@@ -61,10 +59,7 @@ void postTweet(twitter *twitter) {
     printf("---- Write your tweet here ----\n\nYou have 280 characters:\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);
     printf("\n---- Tweet Sent! ----\n");
-    twitter->most_recent_tweet = push_tweet(newTweet,
-                                            twitter->most_recent_tweet); /* adds newTweet to the linked list */
-    printf("\nPress Enter to Continue\n");
-    while (getchar() != '\n');
+    twitter->most_recent_tweet = push_tweet(newTweet,twitter->most_recent_tweet); /* adds newTweet to the linked list */
 }
 
 void getNewsfeed(twitter *twitter) {
@@ -111,8 +106,6 @@ void follow(twitter *twitter) {
                 printf("%s has been followed\n", wantToFollow);
                 free(wantToFollow);
 
-                printf("\nPress Enter to Continue\n");
-                while (getchar() != '\n');
                 return;
             }
             current = current->next;
@@ -151,8 +144,6 @@ void unfollow(twitter *twitter) {
                 printf("%s has been unfollowed!\n", wantToUnfollow);
                 free(wantToUnfollow);
 
-                printf("\nPress Enter to Continue\n");
-                while (getchar() != '\n');
                 return;
             }
             current = current->next;
