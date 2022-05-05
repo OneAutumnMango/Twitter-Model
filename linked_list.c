@@ -52,6 +52,7 @@ void delete_current_user(twitter *twitter) {
     if (current->previous == NULL) { /* if at start */
         if (current->next == NULL) { /* if only user */
             twitter->userlist = twitter->current_user = NULL;
+            twitter->user_count--;
             puts("No users exist");
             create_account(twitter);
         }
