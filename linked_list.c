@@ -35,7 +35,6 @@ void remove_users_tweets(twitter *twitter) { /* removes all the current users tw
     }
 }
 
-
 void push_user(user *user, twitter *twitter) {
     UserNode *new = malloc(sizeof(UserNode));
     new->user = user;

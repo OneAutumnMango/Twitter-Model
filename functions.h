@@ -16,8 +16,7 @@ char *get_unique_username(twitter *twitter);
 /* prompts for an existing username, keeps trying until given */
 char *get_existing_username(twitter *twitter);
 
-
 /* returns true if item is in list of length length -> is_in(item, list, length) */
 int is_in(size_t item, size_t list[], size_t length);
 
-void print_all_tweets(twitter* twitter);
+void print_all_tweets(twitter *twitter);

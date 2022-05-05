@@ -14,9 +14,7 @@ void getNewsfeed(twitter *twitter);
 void follow(twitter *twitter);
 void unfollow(twitter *twitter);
 
-void print_user_info(twitter* twitter);
+void print_user_info(twitter *twitter);
 
 /* closes the program */
 void exit_twitter(void);
-
-

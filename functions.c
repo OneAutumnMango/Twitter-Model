@@ -118,7 +118,7 @@ char *get_existing_username(twitter *twitter) {
     return username;
 }
 
-void print_all_tweets(twitter* twitter) {
+void print_all_tweets(twitter *twitter) {
     TweetNode *current = twitter->most_recent_tweet;
     printf("---- All Tweets ----\n");
     while (current != NULL) { /* found 10 tweets or reached end of list */
