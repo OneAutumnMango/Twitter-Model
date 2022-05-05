@@ -1,4 +1,6 @@
 #include "linked_list.h"
+#include "user_functions.h"
+#include <stdio.h>
 
 TweetNode *push_tweet(tweet new_tweet, TweetNode *previous_node) { /* returns new start of linked list */
     TweetNode *new_node = malloc(sizeof(TweetNode));
@@ -18,8 +20,7 @@ void remove_users_tweets(twitter *twitter) { /* removes all the current users tw
                 twitter->most_recent_tweet = current->next_node; /* remove the tweet from the front */
             }
             free(previous);
-        }
-        else {
+        } else {
             previous = current; /* move onto the next node */
         }
         current = current->next_node; /* move onto the next node */
@@ -41,12 +42,23 @@ void push_user(user *user, twitter *twitter) {
 
 void delete_current_user(twitter *twitter) {
     UserNode *current = twitter->current_user;
-    if (current->previous == NULL) {
-        twitter->userlist = current->next;  /* does not account for if only 1 user, fix later */
+    if (current->previous == NULL) {  /* if at start */
+        if (current->next == NULL) {  /* if only user */
+            twitter->userlist = twitter->current_user = NULL;
+            puts("No users exist");
+            create_account(twitter);
+        }
+        else {
+            twitter->userlist = twitter->current_user = current->next;  /* does not account for if only 1 user, fix later */
+            current->next->previous = NULL;
+        }
     }
-    else {
-        current->previous->next = current; /* points previous node's 'next' to current */
-        twitter->current_user = twitter->userlist;  /* set current user as most recently created account */
+    else if (current->next == NULL) {  /* if at end */
+        current->next->previous = NULL;
+    }
+    else {  /* if in middle */
+        current->previous->next = current->next;
+        current->next->previous = current->previous;
     }
     free(current);
 }
