@@ -40,6 +40,7 @@ void push_user(user *user, twitter *twitter) {
     UserNode *new = malloc(sizeof(UserNode));
     new->user = user;
     new->next = twitter->userlist;
+    new->previous = NULL;
     if (twitter->userlist != NULL) { /* if it is not the start of the list */
         twitter->userlist->previous = malloc(sizeof(UserNode));
         twitter->userlist->previous = new; /* points old start of userlist to most new */
@@ -59,7 +60,8 @@ void delete_current_user(twitter *twitter) {
             return;
         }
         else {
-            twitter->userlist = twitter->current_user = current->next; /* does not account for if only 1 user, fix later */
+            twitter->userlist = current->next;
+            twitter->current_user = current->next;
             current->next->previous = NULL;
         }
     }
