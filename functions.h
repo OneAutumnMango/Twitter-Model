@@ -6,8 +6,8 @@ tweet initialise_tweet(size_t userID);
 
 twitter initialise_twitter(void);
 
+size_t list_users_login(twitter *twitter);
 size_t list_users_to_follow(twitter *twitter);
-
 size_t list_users_following(twitter *twitter);
 
 /* prompts for an unique username, keeps trying until given */

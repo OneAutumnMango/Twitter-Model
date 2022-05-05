@@ -35,6 +35,22 @@ int is_in(size_t item, size_t list[], size_t length) { /* returns true is item i
     return 0;
 }
 
+size_t list_users_login(twitter *twitter) { /* to list users to login as */
+    user *user = twitter->current_user->user;
+    UserNode *current = twitter->userlist;
+    size_t i = 0;
+    while (current != NULL) {
+        if (current == twitter->current_user) {
+            current = current->next;
+            continue; /* no need to list yourself or people you are already following */
+        }
+        printf("%s\n", current->user->username);
+        i++;
+        current = current->next;
+    }
+    return i;
+}
+
 size_t list_users_to_follow(twitter *twitter) { /* to list users to follow */
     user *user = twitter->current_user->user;
     UserNode *current = twitter->userlist;

@@ -31,7 +31,7 @@ void create_account(twitter *twitter) {
 void login(twitter *twitter) {
     char username[USERNAME_LENGTH];
     puts("---- Which user would you like to login as? ----\n");
-    list_users_to_follow(twitter);
+    list_users_login(twitter);
     puts("\n---- Please enter a username ----\n");
     strcpy(username, get_existing_username(twitter));
 
