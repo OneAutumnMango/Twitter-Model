@@ -25,39 +25,38 @@ void create_account(twitter *twitter) {
     push_user(user, twitter);                  /* Add user to linked list */
     twitter->current_user = twitter->userlist; /* set created user as current user */
 
-    puts("Your account has been created!");
-
-    printf("\nPress Enter to Continue\n");
-    while(getchar() != '\n');
+    puts("Your account has been created!\n");
 }
 
 void login(twitter *twitter) {
     char username[USERNAME_LENGTH];
-    printf("---- Please enter your username ----\n");
+    puts("---- Which user would you like to login as? ----\n");
+    list_users(twitter);
+    puts("\n---- Please enter a username ----\n");
     strcpy(username, get_existing_username(twitter));
 
     UserNode *current = twitter->current_user;
     while (current != NULL) {
         if (strcmp(username, current->user->username) == 0) { /* if username matches current */
             twitter->current_user = current;                  /* set user as current user */
-            printf("---- User successfully logged-in ----\n");
+            puts("---- User successfully logged-in ----\n");
 
-            printf("\nPress Enter to Continue\n");
+            puts("\nPress Enter to Continue\n");
             while(getchar() != '\n');
             return;
         }
         current = current->next; /* cycle to next */
     }
-    printf("Error: Username specified not found.\n");
+    puts("Error: Username specified not found.\n");
 
-    printf("\nPress Enter to Continue\n");
+    puts("Press Enter to Continue\n");
     while(getchar() != '\n');
 }
 
 // Returns the tweet written by the user
 void postTweet(twitter *twitter) {
     tweet newTweet = initialise_tweet(twitter->current_user->user->userID);
-    strcpy(newTweet.tweetAuthor, twitter->userlist->user->username);
+    strcpy(newTweet.tweetAuthor, twitter->current_user->user->username);
 
     printf("---- Write your tweet here ----\n\nYou have 280 characters:\n");
     fgets(newTweet.tweet, TWEET_LENGTH, stdin);

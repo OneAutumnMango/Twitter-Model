@@ -77,7 +77,7 @@ char *get_unique_username(twitter *twitter) {
 char *get_existing_username(twitter *twitter) {
     char *username = malloc(sizeof(char) * USERNAME_LENGTH);
     do {
-        printf("\nPlease enter a username from above: ");
+        printf("Please enter a username from above: ");
         fgets(username, USERNAME_LENGTH, stdin);
         int len = strlen(username);
         if (username[len - 1] == '\n')
