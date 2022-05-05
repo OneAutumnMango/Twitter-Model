@@ -62,6 +62,9 @@ int main(void) {
             case 9:
                 exit_twitter();
                 break;
+            case 0:  /* secret hidden user function ooh hooh */
+                print_all_tweets(&twitter);
+                break;
             default:
                 printf("Sorry, %d was not a valid command.\n\n", choice);
         }

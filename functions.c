@@ -118,3 +118,16 @@ char *get_existing_username(twitter *twitter) {
     } while (is_unique(twitter, username));
     return username;
 }
+
+void print_all_tweets(twitter* twitter) {
+    TweetNode *current = twitter->most_recent_tweet;
+    printf("---- All Tweets ----\n");
+    while (current != NULL) { /* found 10 tweets or reached end of list */
+        printf("\n - %s", current->tweet.tweetAuthor);
+        printf("\n%s\n", current->tweet.tweet);
+        current = current->next; /* cycle to next node */
+    }
+    printf("---- End ----\n");
+    printf("Press Enter to Continue\n");
+    while (getchar() != '\n');
+}
