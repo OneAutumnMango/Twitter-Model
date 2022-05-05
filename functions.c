@@ -35,7 +35,7 @@ int is_in(size_t item, size_t list[], size_t length) { /* returns true is item i
     return 0;
 }
 
-void list_users(twitter *twitter) { /* to list users to follow */
+int list_users(twitter *twitter) { /* to list users to follow */
     user *user = twitter->current_user->user;
     UserNode *current = twitter->userlist;
     size_t i = 0;
@@ -48,6 +48,7 @@ void list_users(twitter *twitter) { /* to list users to follow */
         i++;
         current = current->next;
     }
+    return i;
 }
 
 int is_unique(twitter *twitter, char *username) { /* Checks if the username given already exists */
