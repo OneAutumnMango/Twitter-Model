@@ -138,9 +138,14 @@ void unfollow(twitter *twitter) {
         strcpy(wantToUnfollow, get_existing_username(twitter));
         while (current != NULL) {
             if (strcmp(wantToUnfollow, current->user->username) == 0) {
-                for (int i = 0; i < current->user->follower_count; ++i) {
-                    if (current->user->userID == twitter->current_user->user->userID) {
-                        current->user->followers[current->user->follower_count] = 100;
+                for (int i=0; i < current->user->follower_count; ++i) {
+                    if (current->user->followers[i] == twitter->current_user->user->userID) {
+                        current->user->followers[i] = 100;
+                    }
+                }
+                for (int i=0; i < twitter->current_user->user->following_count; ++i) {
+                    if (current->user->userID == twitter->current_user->user->following[i]) {
+                        twitter->current_user->user->following[i] = 100;
                     }
                 }
                 printf("%s has been unfollowed!\n", wantToUnfollow);
