@@ -35,7 +35,7 @@ void login(twitter *twitter) {
     puts("\n---- Please enter a username ----\n");
     strcpy(username, get_existing_username(twitter));
 
-    UserNode *current = twitter->current_user;
+    UserNode *current = twitter->userlist;
     while (current != NULL) {
         if (strcmp(username, current->user->username) == 0) { /* if username matches current */
             twitter->current_user = current;                  /* set user as current user */
