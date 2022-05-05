@@ -51,6 +51,22 @@ int list_users(twitter *twitter) { /* to list users to follow */
     return i;
 }
 
+int list_users_following(twitter *twitter) { /* to list users to follow */
+    user *user = twitter->current_user->user;
+    UserNode *current = twitter->userlist;
+    size_t i = 0;
+    while (current != NULL) {
+        if (current == twitter->current_user || (is_in(i, user->following, user->following_count) == 0)) {
+            current = current->next;
+            continue; /* no need to list yourself or people you are already following */
+        }
+        printf("%s\n", current->user->username);
+        i++;
+        current = current->next;
+    }
+    return i;
+}
+
 int is_unique(twitter *twitter, char *username) { /* Checks if the username given already exists */
     UserNode *current = twitter->userlist;
     while (current != NULL) {

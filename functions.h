@@ -5,6 +5,7 @@ tweet initialise_tweet(size_t userID);
 twitter initialise_twitter(void);
 char *get_unique_username(twitter *twitter);
 int list_users(twitter *twitter);
+int list_users_following(twitter *twitter);
 char *get_existing_username(twitter *twitter);
 
 
