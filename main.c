@@ -40,22 +40,25 @@ int main(void) {
                 login(&twitter);
                 break;
             case 3:
-                postTweet(&twitter);
+                print_user_info(&twitter);
                 break;
             case 4:
-                getNewsfeed(&twitter);
+                postTweet(&twitter);
                 break;
             case 5:
-                follow(&twitter);
+                getNewsfeed(&twitter);
                 break;
             case 6:
-                unfollow(&twitter);
+                follow(&twitter);
                 break;
             case 7:
+                unfollow(&twitter);
+                break;
+            case 8:
                 remove_users_tweets(&twitter);
                 delete_current_user(&twitter);
                 break;
-            case 8:
+            case 9:
                 exit_twitter();
                 break;
             default:
