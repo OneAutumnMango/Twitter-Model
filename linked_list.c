@@ -10,7 +10,7 @@ TweetNode *push_tweet(tweet new_tweet, TweetNode *previous_node) { /* returns ne
 void remove_users_tweets(twitter *twitter) { /* removes all the current users tweets from linked list */
     TweetNode *previous = twitter->most_recent_tweet;
     TweetNode *current = twitter->most_recent_tweet;
-    while (current->next_node != NULL) {                                    /* go through all the tweets */
+    while (current != NULL) {                                    /* go through all the tweets */
         if (current->tweet.userID == twitter->current_user->user->userID) { /* if the author is the current user */
             previous->next_node = current;                                  /* remove the tweet from the list */
 
