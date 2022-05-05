@@ -8,6 +8,7 @@ void login(twitter *twitter);
 void postTweet(twitter *twitter);
 void getNewsfeed(twitter *twitter);
 void follow(twitter *twitter);
+void unfollow(twitter *twitter);
 
 void exit_twitter(void);
 

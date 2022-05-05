@@ -75,7 +75,7 @@ void getNewsfeed(twitter *twitter) {
     while (count < 10 && current != NULL) { /* found 10 tweets or reached end of list */
         if (is_in(current->tweet.userID, user->following, user->following_count) || current->tweet.userID == user->userID) {
             count++; /* add time sent + formatting + L + ratio */
-            printf("\n\t%s - TIME HERE?", current->tweet.tweetAuthor);
+            printf("\n\t%s", current->tweet.tweetAuthor);
             printf("\n%s\n", current->tweet.tweet);
         }
         current = current->next_node; /* cycle to next node */
@@ -99,6 +99,33 @@ void follow(twitter *twitter) {
                 twitter->current_user->user->following_count++;
                 free(wantToFollow);
                 puts("User has been followed");
+
+                printf("\nPress Enter to Continue\n");
+                while(getchar() != '\n');
+                return;
+            }
+            current = current->next;
+        }
+        puts("That username was not found");
+    }
+}
+
+void unfollow(twitter *twitter) {
+    char *wantToUnfollow = malloc(sizeof(char) * USERNAME_LENGTH);
+    while (1) {
+        UserNode *current = twitter->userlist;
+        puts("These are the users you follow:");
+        list_users(twitter);        /* NEED TO LIST CORRECT USERS*/
+        strcpy(wantToUnfollow, get_existing_username(twitter));
+        while (current != NULL) {
+            if (strcmp(wantToUnfollow, current->user->username) == 0) {
+                for (int i=0;i<current->user->follower_count;++i) {
+                    if (current->user->userID == twitter->current_user->user->userID) {
+                        current->user->followers[current->user->follower_count] = 100;
+                    }
+                }
+                printf("%s has been unfollowed!\n",wantToUnfollow);
+                free(wantToUnfollow);
 
                 printf("\nPress Enter to Continue\n");
                 while(getchar() != '\n');

@@ -49,7 +49,7 @@ int main(void) {
                 follow(&twitter);
                 break;
             case 6:
-//                unfollow(&twitter);
+                unfollow(&twitter);
                 break;
             case 7:
                 delete_current_user(&twitter);
