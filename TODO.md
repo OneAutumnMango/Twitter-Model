@@ -13,6 +13,6 @@ To Do List
 
 
 - REWRITE 
-  - remove_users_tweets, can use UserNode->previous
+  - remove_users_tweets
   - login()
-
+  - delete user
