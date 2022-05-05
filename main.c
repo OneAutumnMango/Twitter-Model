@@ -52,6 +52,7 @@ int main(void) {
                 unfollow(&twitter);
                 break;
             case 7:
+                remove_users_tweets(&twitter);
                 delete_current_user(&twitter);
                 break;
             case 8:
