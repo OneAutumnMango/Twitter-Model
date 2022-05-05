@@ -36,7 +36,6 @@ int is_in(size_t item, size_t list[], size_t length) { /* returns true is item i
 }
 
 size_t list_users_login(twitter *twitter) { /* to list users to login as */
-    user *user = twitter->current_user->user;
     UserNode *current = twitter->userlist;
     size_t i = 0;
     while (current != NULL) {
