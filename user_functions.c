@@ -79,7 +79,7 @@ void getNewsfeed(twitter *twitter) {
             printf("\n - %s", current->tweet.tweetAuthor);
             printf("\n%s\n", current->tweet.tweet);
         }
-        current = current->next_node; /* cycle to next node */
+        current = current->next; /* cycle to next node */
     }
     printf("---- End of News Feed ----\n");
     printf("\nPress Enter to Continue\n");

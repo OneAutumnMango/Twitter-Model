@@ -25,7 +25,7 @@ typedef struct user {
 
 typedef struct TweetNode {
     tweet tweet;
-    struct TweetNode *next_node;  /* link to previously most recent tweet */
+    struct TweetNode *next;  /* link to previously most recent tweet */
 } TweetNode;
 
 typedef struct UserNode {
