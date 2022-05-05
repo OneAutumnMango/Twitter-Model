@@ -89,7 +89,15 @@ void follow(twitter *twitter) {
     while (1) {
         UserNode *current = twitter->userlist;
         puts("These are the users available to follow:");
-        list_users(twitter);
+        int listLen = list_users(twitter);
+
+        if (listLen == 0) {     /* If there are no users available to follow */
+            puts("There are no users available to follow");
+            printf("\nPress Enter to Continue\n");
+            while(getchar() != '\n');
+            return;
+        }
+
         strcpy(wantToFollow, get_existing_username(twitter));
         while (current != NULL) {
             if (strcmp(wantToFollow, current->user->username) == 0) {
