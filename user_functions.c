@@ -34,10 +34,10 @@ void create_account(twitter *twitter) {
 void login(twitter *twitter) {
     char username[USERNAME_LENGTH];
     printf("---- Please enter your username ----\n");
-    fgets(username, USERNAME_LENGTH, stdin);
+    strcpy(username, get_existing_username(twitter));
 
     UserNode *current = twitter->current_user;
-    while (current->next != NULL) {
+    while (current != NULL) {
         if (strcmp(username, current->user->username) == 0) { /* if username matches current */
             twitter->current_user = current;                  /* set user as current user */
             printf("---- User successfully logged-in ----\n");
