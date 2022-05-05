@@ -53,8 +53,10 @@ void delete_current_user(twitter *twitter) {
         if (current->next == NULL) { /* if only user */
             twitter->userlist = twitter->current_user = NULL;
             twitter->user_count--;
+            puts("User successfully Deleted");
             puts("No users exist");
             create_account(twitter);
+            return;
         }
         else {
             twitter->userlist = twitter->current_user = current->next; /* does not account for if only 1 user, fix later */
@@ -68,5 +70,6 @@ void delete_current_user(twitter *twitter) {
         current->previous->next = current->next;
         current->next->previous = current->previous;
     }
+    puts("User successfully Deleted");
     free(current);
 }
