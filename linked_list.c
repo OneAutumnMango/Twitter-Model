@@ -62,7 +62,7 @@ void delete_current_user(twitter *twitter) {
         }
     }
     else if (current->next == NULL) { /* if at end */
-        current->next->previous = NULL;
+        current->previous->next = NULL;
     }
     else { /* if in middle */
         current->previous->next = current->next;
