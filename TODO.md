@@ -14,5 +14,5 @@ To Do List
 
 - REWRITE 
   - remove_users_tweets
-  - login()
+  - login()  (if following user wont print them (list_users_to_follow not written for it))
   - delete user

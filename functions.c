@@ -9,14 +9,14 @@
 user *initialise_user(char *username, twitter *twitter) {
     user *user = malloc(sizeof(struct user));
     strcpy(user->username, username);
-    
+
     user->following_count = 0;
     user->follower_count = 0;
     user->userID = twitter->user_count; /* give user new userid, and increments usercount */
     twitter->user_count++;
     return user;
 }
-    
+
 tweet initialise_tweet(size_t userID) { /* twitter.current_user */
     tweet tweet = {userID, "", ""};     /* {userID, username, tweet} */
     return tweet;
@@ -35,7 +35,7 @@ int is_in(size_t item, size_t list[], size_t length) { /* returns true is item i
     return 0;
 }
 
-int list_users(twitter *twitter) { /* to list users to follow */
+size_t list_users_to_follow(twitter *twitter) { /* to list users to follow */
     user *user = twitter->current_user->user;
     UserNode *current = twitter->userlist;
     size_t i = 0;
@@ -51,7 +51,7 @@ int list_users(twitter *twitter) { /* to list users to follow */
     return i;
 }
 
-int list_users_following(twitter *twitter) { /* to list users to follow */
+size_t list_users_following(twitter *twitter) { /* to list users you are following (for unfollow) */
     user *user = twitter->current_user->user;
     UserNode *current = twitter->userlist;
     size_t i = 0;

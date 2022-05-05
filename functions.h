@@ -1,11 +1,19 @@
 #include "objects.h"
 
-user* initialise_user(char username[USERNAME_LENGTH], twitter* twitter);
+user *initialise_user(char username[USERNAME_LENGTH], twitter *twitter);
+
 tweet initialise_tweet(size_t userID);
+
 twitter initialise_twitter(void);
+
+size_t list_users_to_follow(twitter *twitter);
+
+size_t list_users_following(twitter *twitter);
+
+/* prompts for an unique username, keeps trying until given */
 char *get_unique_username(twitter *twitter);
-int list_users(twitter *twitter);
-int list_users_following(twitter *twitter);
+
+/* prompts for an existing username, keeps trying until given */
 char *get_existing_username(twitter *twitter);
 
 
