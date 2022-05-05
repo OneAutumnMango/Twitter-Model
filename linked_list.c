@@ -41,6 +41,12 @@ void push_user(user *user, twitter *twitter) {
 
 void delete_current_user(twitter *twitter) {
     UserNode *current = twitter->current_user;
-    current->previous->next = current; /* points previous node's 'next' to current */
+    if (current->previous == NULL) {
+        twitter->userlist = current->next;  /* does not account for if only 1 user, fix later */
+    }
+    else {
+        current->previous->next = current; /* points previous node's 'next' to current */
+        twitter->current_user = twitter->userlist;  /* set current user as most recently created account */
+    }
     free(current);
 }
