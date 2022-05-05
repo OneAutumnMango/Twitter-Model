@@ -123,7 +123,15 @@ void unfollow(twitter *twitter) {
     while (1) {
         UserNode *current = twitter->userlist;
         puts("These are the users you follow:");
-        list_users(twitter);        /* NEED TO LIST CORRECT USERS*/
+        int listLen = list_users_following(twitter);
+
+        if (listLen == 0) {     /* If there are no users available to unfollow */
+            puts("You do not follow anybody!");
+            printf("\nPress Enter to Continue\n");
+            while(getchar() != '\n');
+            return;
+        }
+
         strcpy(wantToUnfollow, get_existing_username(twitter));
         while (current != NULL) {
             if (strcmp(wantToUnfollow, current->user->username) == 0) {
