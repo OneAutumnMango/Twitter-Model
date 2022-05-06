@@ -77,6 +77,7 @@ void follow(twitter *twitter) {
         UserNode *current = twitter->userlist;
         puts("These are the users available to follow:");
         size_t listLen = list_users_to_follow(twitter);
+        puts("\nType one of the usernames above to follow them");
 
         if (listLen == 0) { /* If there are no users available to follow */
             puts("There are no users available to follow");
@@ -110,6 +111,7 @@ void unfollow(twitter *twitter) {
         UserNode *current = twitter->userlist;
         puts("These are the users you follow:");
         size_t listLen = list_users_following(twitter);
+        puts("\nType one of the usernames above to unfollow them");
 
         if (listLen == 0) { /* If there are no users available to unfollow */
             puts("You do not follow anybody!");
