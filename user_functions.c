@@ -58,8 +58,7 @@ void getNewsfeed(twitter *twitter) {
 
     printf("---- Your News Feed ----\n");
     while (count < 10 && current != NULL) { /* found 10 tweets or reached end of list */
-        if (is_in(current->tweet.userID, user->following, user->following_count) ||
-            current->tweet.userID == user->userID) {
+        if (is_in(current->tweet.userID, user->following, user->following_count) || current->tweet.userID == user->userID) { /* Check if the tweet is yours or written by someone you follow */
             count++;    /* count increments only if a tweet is displayed */
             /* add time sent? + formatting + L + ratio */
             printf("\n - %s", current->tweet.tweetAuthor);  /* Prints the Tweet's Author */
