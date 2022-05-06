@@ -2,6 +2,8 @@
 #include "user_functions.h"
 #include <stdio.h>
 
+/* Contains functions that update the linked lists of users or of tweets */
+
 TweetNode *push_tweet(tweet new_tweet, TweetNode *previous_node) { /* returns new start of linked list */
     TweetNode *new_node = malloc(sizeof(TweetNode));
     new_node->tweet = new_tweet;
@@ -15,20 +17,20 @@ void remove_users_tweets(twitter *twitter) { /* removes all the current users tw
     while (cur != NULL) { /* go through all the tweets */
         prev = cur;
         if (cur->tweet.userID == twitter->current_user->user->userID) { /* to delete */
-            if (cur->next == NULL) {
+            if (cur->next == NULL) {    /* If its the last tweet */
                 free(cur);
                 return;
             }
-            else {
+            else {  /* If its not the last tweet */
                 twitter->most_recent_tweet = cur = cur->next;
                 free(prev);
             }
         }
         else { // not delete
-            if (cur->next == NULL) {
+            if (cur->next == NULL) {    /* If its the last tweet */
                 return;
             }
-            else {
+            else {  /* If its not the last tweet */
                 cur = cur->next;
             }
         }
@@ -58,7 +60,7 @@ void delete_current_user(twitter *twitter) {
             create_account(twitter);
             return;
         }
-        else {
+        else { /* if not only user */
             twitter->userlist = current->next;
             twitter->current_user = current->next;
             current->next->previous = NULL;

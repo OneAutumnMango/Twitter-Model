@@ -5,7 +5,6 @@
 /* Contains hidden functions not available to the user */
 /* Struct initialisers */
 
-// void initialise_user(char *username, user* user,twitter *twitter) {
 user *initialise_user(char *username, twitter *twitter) {
     user *user = malloc(sizeof(struct user));
     strcpy(user->username, username);

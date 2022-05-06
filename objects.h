@@ -8,8 +8,8 @@
 #define OBJECTS
 
 typedef struct tweet {
-    size_t userID; /* index of user in userlist */
-    char tweetAuthor[USERNAME_LENGTH];
+    size_t userID; /* unique ID of tweet's author in userlist */
+    char tweetAuthor[USERNAME_LENGTH]; /* While storing the tweet's author here does waste memory, it makes it much easier to access. */
     char tweet[TWEET_LENGTH];
 } tweet;
 

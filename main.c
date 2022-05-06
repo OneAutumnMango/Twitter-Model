@@ -14,7 +14,8 @@ int main(void) {
 
     char *buffer = malloc(sizeof(char));
     int choice = 1;
-    while (choice != 9) {
+
+    while (choice != 9) { /* Loops the program until program is ended by the user */
         puts("\nWhat do you want to do?\n\n"
              "1 - Create a new account\n"
              "2 - Log into an existing account\n"
@@ -29,10 +30,10 @@ int main(void) {
              "Please select a number corresponding to one of the options above\n");
 
         scanf("%c", buffer);
-        fflush(stdin);
+        fflush(stdin); /* This function doesn't seem to work in Linux so don't use Linux i guess. */
         choice = atol(buffer);
 
-        switch (choice) {
+        switch (choice) { /* Switch Statement for all of the choices outlined above */
         case 1:
             create_account(&twitter);
             break;
@@ -68,5 +69,6 @@ int main(void) {
             puts("Sorry, that was not a valid command.\n");
         }
     }
+
     return 0;
 }
